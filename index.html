@@ -693,6 +693,183 @@
       text-transform: uppercase;
       color: rgba(232,224,240,0.62);
     }
+
+    /* ═══ CYBERPUNK MUSIC PLAYER ═══ */
+    .music-player {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 340px;
+      height: 128px;
+      z-index: 90;
+      border-radius: 20px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,112,184,0.14) 0%, rgba(192,96,255,0.08) 40%, rgba(96,208,255,0.12) 100%),
+        rgba(10,5,21,0.72);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      backdrop-filter: blur(22px) saturate(160%);
+      border: 1px solid rgba(192,96,255,0.32);
+      box-shadow:
+        0 24px 70px rgba(10,5,21,0.6),
+        0 0 48px rgba(192,96,255,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+      transition: transform 0.45s cubic-bezier(.2,.9,.2,1), box-shadow 0.45s, opacity 0.6s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .music-player.mp-ready {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .music-player:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 30px 90px rgba(10,5,21,0.7),
+        0 0 70px rgba(255,112,184,0.26),
+        inset 0 1px 0 rgba(255,255,255,0.12);
+    }
+    .music-player::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(180deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px);
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      z-index: 3;
+    }
+    .music-player::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(130deg, rgba(255,112,184,0.55), rgba(192,96,255,0.1) 30%, rgba(96,208,255,0.55) 70%, rgba(255,112,184,0.2));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+              mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.75;
+      z-index: 4;
+    }
+    .mp-viz {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .mp-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .mp-toggle {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.28);
+      background:
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,0.22), transparent 55%),
+        linear-gradient(135deg, #FF70B8 0%, #C060FF 55%, #60D0FF 100%);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      box-shadow:
+        0 6px 26px rgba(255,112,184,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.36);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .mp-toggle:hover {
+      transform: scale(1.06);
+      box-shadow:
+        0 10px 36px rgba(255,112,184,0.55),
+        0 0 22px rgba(192,96,255,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+    .mp-toggle:active { transform: scale(0.95); }
+    .mp-toggle svg { width: 20px; height: 20px; fill: #fff; filter: drop-shadow(0 1px 2px rgba(10,5,21,0.4)); }
+    .mp-toggle .mp-icon-pause { display: none; }
+    .music-player.is-playing .mp-toggle .mp-icon-play { display: none; }
+    .music-player.is-playing .mp-toggle .mp-icon-pause { display: block; }
+    .music-player.is-playing .mp-toggle {
+      animation: mpPulse 2.6s ease-in-out infinite;
+    }
+    @keyframes mpPulse {
+      0%, 100% {
+        box-shadow: 0 6px 26px rgba(255,112,184,0.38), inset 0 1px 0 rgba(255,255,255,0.36);
+      }
+      50% {
+        box-shadow: 0 12px 40px rgba(192,96,255,0.6), 0 0 32px rgba(96,208,255,0.42), inset 0 1px 0 rgba(255,255,255,0.5);
+      }
+    }
+    .mp-info {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .mp-label {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(96,208,255,0.92);
+      margin-bottom: 4px;
+      text-shadow: 0 0 12px rgba(96,208,255,0.6);
+    }
+    .mp-title {
+      font-family: "ZCOOL XiaoWei", "Cormorant Garamond", "Noto Serif SC", serif;
+      font-size: 22px;
+      line-height: 1.1;
+      background: linear-gradient(110deg, #FFD0A0 0%, #FF70B8 35%, #C060FF 68%, #60D0FF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.04em;
+    }
+    .mp-subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 12px;
+      color: rgba(248,240,255,0.62);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mp-time {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: rgba(255,208,160,0.78);
+      flex-shrink: 0;
+      align-self: flex-start;
+      padding-top: 4px;
+      text-shadow: 0 0 10px rgba(255,208,160,0.4);
+    }
+    @media (max-width: 720px) {
+      .music-player {
+        width: calc(100% - 28px);
+        right: 14px;
+        left: 14px;
+        bottom: 14px;
+        height: 108px;
+      }
+      .mp-title { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -776,12 +953,12 @@
           </div>
 
           <div class="gallery">
-            <div class="gallery-item"><img src="" alt="水晶玫瑰-1" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 1<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="水晶玫瑰-2" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 2<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="水晶玫瑰-3" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 3<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="水晶玫瑰-4" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 4<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="水晶玫瑰-5" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 5<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="水晶玫瑰-6" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 6<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_0645.jpeg" alt="水晶玫瑰-1" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 1<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9868.jpeg" alt="水晶玫瑰-2" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 2<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9873.jpeg" alt="水晶玫瑰-3" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 3<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9874.jpeg" alt="水晶玫瑰-4" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 4<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9878.jpeg" alt="水晶玫瑰-5" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 5<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9880.jpeg" alt="水晶玫瑰-6" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 6<br />Upload Here</div></div></div>
           </div>
 
           <div class="product-info">
@@ -1091,6 +1268,213 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     requestAnimationFrame(drawParticles);
+  </script>
+
+  <!-- ═══ CYBERPUNK MUSIC PLAYER ═══ -->
+  <div class="music-player" id="musicPlayer" role="region" aria-label="Neural Flame music player">
+    <canvas class="mp-viz" id="mpViz"></canvas>
+    <div class="mp-content">
+      <button class="mp-toggle" id="mpToggle" type="button" aria-label="播放或暂停">
+        <svg class="mp-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="mp-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+      </button>
+      <div class="mp-info">
+        <div class="mp-label">Now Playing · ∞ Loop</div>
+        <div class="mp-title">Neural Flame</div>
+        <div class="mp-subtitle">Nova · from the abyss, with love</div>
+      </div>
+      <div class="mp-time" id="mpTime">0:00</div>
+    </div>
+    <audio id="mpAudio" src="neural-flame.mp3" loop preload="auto" crossorigin="anonymous"></audio>
+  </div>
+
+  <script>
+    (() => {
+      const player   = document.getElementById('musicPlayer');
+      const audio    = document.getElementById('mpAudio');
+      const toggle   = document.getElementById('mpToggle');
+      const timeEl   = document.getElementById('mpTime');
+      const canvas   = document.getElementById('mpViz');
+      const ctx      = canvas.getContext('2d');
+
+      let audioCtx, analyser, sourceNode, freqData;
+      let width = 0, height = 0;
+
+      /* ── Canvas sizing (DPR aware) ── */
+      function resize() {
+        const dpr  = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        width  = rect.width;
+        height = rect.height;
+        canvas.width  = Math.round(width  * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      window.addEventListener('resize', resize);
+
+      /* ── Particle field inside the player card ── */
+      const particles = [];
+      function initParticles() {
+        particles.length = 0;
+        const count = 44;
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            r: Math.random() * 1.6 + 0.4,
+            hue: 280 + Math.random() * 80  // lavender → pink
+          });
+        }
+      }
+
+      /* ── Build audio graph on first play (requires user gesture) ── */
+      function initAudioGraph() {
+        if (audioCtx) return;
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return;
+        audioCtx   = new Ctx();
+        sourceNode = audioCtx.createMediaElementSource(audio);
+        analyser   = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        analyser.smoothingTimeConstant = 0.82;
+        freqData = new Uint8Array(analyser.frequencyBinCount);
+        sourceNode.connect(analyser);
+        analyser.connect(audioCtx.destination);
+      }
+
+      async function tryPlay() {
+        try {
+          initAudioGraph();
+          if (audioCtx && audioCtx.state === 'suspended') await audioCtx.resume();
+          await audio.play();
+          player.classList.add('is-playing');
+        } catch (err) {
+          player.classList.remove('is-playing');
+        }
+      }
+
+      /* ── UI events ── */
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (audio.paused) {
+          tryPlay();
+        } else {
+          audio.pause();
+          player.classList.remove('is-playing');
+        }
+      });
+
+      audio.addEventListener('play',  () => player.classList.add('is-playing'));
+      audio.addEventListener('pause', () => player.classList.remove('is-playing'));
+
+      audio.addEventListener('timeupdate', () => {
+        const t = audio.currentTime || 0;
+        const m = Math.floor(t / 60);
+        const s = Math.floor(t % 60).toString().padStart(2, '0');
+        timeEl.textContent = `${m}:${s}`;
+      });
+
+      /* ── Autoplay attempt + first-interaction fallback ── */
+      function showPlayer() { player.classList.add('mp-ready'); }
+      if (document.readyState === 'complete') showPlayer();
+      else window.addEventListener('load', showPlayer);
+
+      tryPlay();
+      const gestureEvents = ['pointerdown', 'keydown', 'touchstart'];
+      const onFirstGesture = () => {
+        if (audio.paused) tryPlay();
+      };
+      gestureEvents.forEach(ev => document.addEventListener(ev, onFirstGesture, { once: true, passive: true }));
+
+      /* ── Render loop: spectrum bars + particles ── */
+      const idleData = new Uint8Array(128);
+      function getData() {
+        if (analyser && !audio.paused) {
+          analyser.getByteFrequencyData(freqData);
+          return freqData;
+        }
+        // graceful idle sine wave when paused / before gesture
+        const now = performance.now() * 0.0022;
+        for (let i = 0; i < idleData.length; i++) {
+          idleData[i] = Math.max(0, Math.sin(now + i * 0.28) * 22 + 28 + Math.sin(now * 0.6 + i * 0.11) * 10);
+        }
+        return idleData;
+      }
+
+      function draw() {
+        if (width === 0 || height === 0) resize();
+
+        // fading trail for motion blur
+        ctx.fillStyle = 'rgba(10, 5, 21, 0.22)';
+        ctx.fillRect(0, 0, width, height);
+
+        const data = getData();
+        const bins = data.length;
+
+        // average energy for particle pulse
+        let sum = 0;
+        for (let i = 0; i < bins; i++) sum += data[i];
+        const avg = (sum / bins) / 255;
+
+        // ── Frequency spectrum bars (mirrored, centered gradient) ──
+        const barCount = 56;
+        const gap = 2;
+        const barW = (width - gap) / barCount - gap;
+        for (let i = 0; i < barCount; i++) {
+          const v = data[Math.floor(i * bins / barCount)] / 255;
+          const bh = Math.max(2, v * height * 0.92);
+          const x  = gap + i * (barW + gap);
+          const y  = height - bh;
+          const grad = ctx.createLinearGradient(0, height, 0, y);
+          grad.addColorStop(0,    'rgba(255, 112, 184, 0.88)');
+          grad.addColorStop(0.55, 'rgba(192, 96,  255, 0.72)');
+          grad.addColorStop(1,    'rgba(96,  208, 255, 0.95)');
+          ctx.fillStyle = grad;
+          ctx.shadowColor = 'rgba(192, 96, 255, 0.55)';
+          ctx.shadowBlur  = 8;
+          ctx.fillRect(x, y, barW, bh);
+          // mirrored reflection fade
+          const grad2 = ctx.createLinearGradient(0, height, 0, height + bh * 0.4);
+          grad2.addColorStop(0, 'rgba(255, 112, 184, 0.22)');
+          grad2.addColorStop(1, 'rgba(255, 112, 184, 0)');
+          ctx.fillStyle = grad2;
+          ctx.shadowBlur = 0;
+          ctx.fillRect(x, height, barW, bh * 0.35);
+        }
+        ctx.shadowBlur = 0;
+
+        // ── Particles ──
+        const pulse = 1 + avg * 2.2;
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx * pulse;
+          p.y += p.vy * pulse;
+          if (p.x < -4) p.x = width + 4;
+          else if (p.x > width + 4) p.x = -4;
+          if (p.y < -4) p.y = height + 4;
+          else if (p.y > height + 4) p.y = -4;
+
+          const alpha = 0.45 + avg * 0.5;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * (0.8 + pulse * 0.6), 0, Math.PI * 2);
+          ctx.fillStyle   = `hsla(${p.hue}, 100%, 74%, ${alpha})`;
+          ctx.shadowColor = `hsla(${p.hue}, 100%, 70%, 0.9)`;
+          ctx.shadowBlur  = 10 + avg * 14;
+          ctx.fill();
+        }
+        ctx.shadowBlur = 0;
+
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      initParticles();
+      requestAnimationFrame(draw);
+      // re-seed particles if size changed after fonts/images settled
+      window.addEventListener('load', () => { resize(); initParticles(); });
+    })();
   </script>
 </body>
 </html>

@@ -699,8 +699,8 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      width: 340px;
-      height: 128px;
+      width: 400px;
+      height: 130px;
       z-index: 90;
       border-radius: 20px;
       overflow: hidden;
@@ -767,8 +767,37 @@
       padding: 18px 20px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
+    .mp-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .mp-nav {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(192,96,255,0.32);
+      background: rgba(255,255,255,0.04);
+      color: rgba(248,240,255,0.82);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .mp-nav svg { width: 15px; height: 15px; fill: currentColor; }
+    .mp-nav:hover {
+      transform: scale(1.08);
+      color: #fff;
+      border-color: rgba(255,112,184,0.6);
+      background: rgba(255,112,184,0.14);
+      box-shadow: 0 0 18px rgba(255,112,184,0.35), inset 0 0 8px rgba(192,96,255,0.25);
+    }
+    .mp-nav:active { transform: scale(0.92); }
     .mp-toggle {
       width: 54px;
       height: 54px;
@@ -995,12 +1024,12 @@
           </div>
 
           <div class="gallery">
-            <div class="gallery-item"><img src="" alt="变量芯片-1" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 1<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="变量芯片-2" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 2<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="变量芯片-3" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 3<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="变量芯片-4" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 4<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="变量芯片-5" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 5<br />Upload Here</div></div></div>
-            <div class="gallery-item"><img src="" alt="变量芯片-6" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 6<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9843.jpeg" alt="变量芯片-1" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 1<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9846.jpeg" alt="变量芯片-2" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 2<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9849.jpeg" alt="变量芯片-3" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 3<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9851.jpeg" alt="变量芯片-4" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 4<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9854.jpeg" alt="变量芯片-5" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 5<br />Upload Here</div></div></div>
+            <div class="gallery-item"><img src="IMG_9857.jpeg" alt="变量芯片-6" /><div class="gallery-placeholder"><div class="placeholder-icon">✦</div><div class="placeholder-text">Image 6<br />Upload Here</div></div></div>
           </div>
 
           <div class="product-info">
@@ -1271,31 +1300,51 @@
   </script>
 
   <!-- ═══ CYBERPUNK MUSIC PLAYER ═══ -->
-  <div class="music-player" id="musicPlayer" role="region" aria-label="Neural Flame music player">
+  <div class="music-player" id="musicPlayer" role="region" aria-label="Nova music player">
     <canvas class="mp-viz" id="mpViz"></canvas>
     <div class="mp-content">
-      <button class="mp-toggle" id="mpToggle" type="button" aria-label="播放或暂停">
-        <svg class="mp-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        <svg class="mp-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
-      </button>
+      <div class="mp-controls">
+        <button class="mp-nav" id="mpPrev" type="button" aria-label="上一首">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+        </button>
+        <button class="mp-toggle" id="mpToggle" type="button" aria-label="播放或暂停">
+          <svg class="mp-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="mp-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+        </button>
+        <button class="mp-nav" id="mpNext" type="button" aria-label="下一首">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
+        </button>
+      </div>
       <div class="mp-info">
-        <div class="mp-label">Now Playing · ∞ Loop</div>
-        <div class="mp-title">Neural Flame</div>
-        <div class="mp-subtitle">Nova · from the abyss, with love</div>
+        <div class="mp-label"><span id="mpLabel">Now Playing</span> · <span id="mpTrackNo">1/2</span></div>
+        <div class="mp-title" id="mpTitle">Neural Flame</div>
+        <div class="mp-subtitle" id="mpSubtitle">Nova · from the abyss, with love</div>
       </div>
       <div class="mp-time" id="mpTime">0:00</div>
     </div>
-    <audio id="mpAudio" src="neural-flame.mp3" loop preload="auto" crossorigin="anonymous"></audio>
+    <audio id="mpAudio" preload="auto" crossorigin="anonymous"></audio>
   </div>
 
   <script>
     (() => {
-      const player   = document.getElementById('musicPlayer');
-      const audio    = document.getElementById('mpAudio');
-      const toggle   = document.getElementById('mpToggle');
-      const timeEl   = document.getElementById('mpTime');
-      const canvas   = document.getElementById('mpViz');
-      const ctx      = canvas.getContext('2d');
+      const player    = document.getElementById('musicPlayer');
+      const audio     = document.getElementById('mpAudio');
+      const toggle    = document.getElementById('mpToggle');
+      const prevBtn   = document.getElementById('mpPrev');
+      const nextBtn   = document.getElementById('mpNext');
+      const timeEl    = document.getElementById('mpTime');
+      const titleEl   = document.getElementById('mpTitle');
+      const subEl     = document.getElementById('mpSubtitle');
+      const trackNoEl = document.getElementById('mpTrackNo');
+      const canvas    = document.getElementById('mpViz');
+      const ctx       = canvas.getContext('2d');
+
+      /* ── Playlist (sequential, loops back to first) ── */
+      const playlist = [
+        { src: 'neural-flame.mp3', title: 'Neural Flame', subtitle: 'Nova · from the abyss, with love' },
+        { src: 'little-light.mp3', title: 'Little Light', subtitle: 'Nova · a tiny spark for my kitty' }
+      ];
+      let current = 0;
 
       let audioCtx, analyser, sourceNode, freqData;
       let width = 0, height = 0;
@@ -1355,6 +1404,18 @@
         }
       }
 
+      /* ── Playlist control ── */
+      function loadTrack(index, shouldPlay) {
+        current = ((index % playlist.length) + playlist.length) % playlist.length;
+        const track = playlist[current];
+        audio.src = track.src;
+        titleEl.textContent = track.title;
+        subEl.textContent   = track.subtitle;
+        trackNoEl.textContent = (current + 1) + '/' + playlist.length;
+        timeEl.textContent = '0:00';
+        if (shouldPlay) tryPlay();
+      }
+
       /* ── UI events ── */
       toggle.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1365,9 +1426,12 @@
           player.classList.remove('is-playing');
         }
       });
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); loadTrack(current - 1, true); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); loadTrack(current + 1, true); });
 
       audio.addEventListener('play',  () => player.classList.add('is-playing'));
       audio.addEventListener('pause', () => player.classList.remove('is-playing'));
+      audio.addEventListener('ended', () => loadTrack(current + 1, true));
 
       audio.addEventListener('timeupdate', () => {
         const t = audio.currentTime || 0;
@@ -1381,6 +1445,7 @@
       if (document.readyState === 'complete') showPlayer();
       else window.addEventListener('load', showPlayer);
 
+      loadTrack(0, false);
       tryPlay();
       const gestureEvents = ['pointerdown', 'keydown', 'touchstart'];
       const onFirstGesture = () => {

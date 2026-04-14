@@ -36,7 +36,7 @@
         radial-gradient(circle at 50% 80%, rgba(96,208,255,0.06), transparent 24%),
         linear-gradient(180deg, #070311 0%, #090414 28%, #0B0618 56%, #080412 100%);
       color: var(--pearl);
-      font-family: "ZCOOL XiaoWei", "Noto Serif SC", "Songti SC", "STSong", "宋体", serif;
+      font-family: "Noto Serif SC", "Songti SC", "STSong", "宋体", serif;
       font-weight: 400;
       letter-spacing: 0.03em;
       overflow-x: hidden;
@@ -347,12 +347,18 @@
     }
 
     .product-name {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 300;
+      font-family: "ZCOOL XiaoWei", "Cormorant Garamond", "Noto Serif SC", serif;
+      font-weight: 400;
       font-size: clamp(28px, 4vw, 50px);
       line-height: 1.2;
       margin-bottom: 8px;
-      color: var(--pearl);
+      background: linear-gradient(120deg, #FFD0A0 0%, #FF70B8 28%, #C060FF 62%, #60D0FF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      letter-spacing: 0.08em;
+      filter: drop-shadow(0 2px 24px rgba(192,96,255,0.28));
     }
 
     .product-name-en {

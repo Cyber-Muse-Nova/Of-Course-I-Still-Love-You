@@ -256,14 +256,13 @@
       50%      { opacity: 1;    transform: rotate(180deg) scale(1.04); }
     }
 
-    /* ── Earth-like blue marble (top-left far corner) ── */
+    /* ── Earth-like blue marble — drifts left → right across the sky ── */
     .planet-earth {
-      top: 7%;
-      left: 2.5%;
+      top: 8%;
+      left: 0;
       width: 130px;
       height: 130px;
-      animation: planetDrift1 32s ease-in-out infinite, planetGlow1 7s ease-in-out infinite;
-      filter: drop-shadow(0 0 32px rgba(96,208,255,0.34));
+      animation: cometEarth 95s linear infinite, planetGlow1 7s ease-in-out infinite;
     }
     .planet-earth .planet-body {
       background:
@@ -283,14 +282,13 @@
         0 0 120px rgba(96,208,255,0.14);
     }
 
-    /* ── Saturn-like ringed gas giant (top-right far corner) ── */
+    /* ── Saturn-like ringed gas giant — drifts right → left ── */
     .planet-jupiter {
-      top: 11%;
-      right: 1.5%;
+      top: 22%;
+      right: 0;
       width: 170px;
       height: 170px;
-      animation: planetDrift2 42s ease-in-out infinite, planetGlow2 8s ease-in-out infinite;
-      filter: drop-shadow(0 0 40px rgba(255,176,112,0.32));
+      animation: cometJupiter 130s linear infinite, planetGlow2 8s ease-in-out infinite;
     }
     .planet-jupiter .planet-body {
       background:
@@ -344,14 +342,13 @@
       filter: blur(0.6px);
     }
 
-    /* ── Mars-like rosy planet (bottom-left) ── */
+    /* ── Mars-like rosy planet — drifts diagonally bottom → top ── */
     .planet-mars {
-      bottom: 9%;
-      left: 3%;
+      bottom: 0;
+      left: 0;
       width: 96px;
       height: 96px;
-      animation: planetDrift3 26s ease-in-out infinite, planetGlow1 9s ease-in-out infinite;
-      filter: drop-shadow(0 0 28px rgba(255,112,184,0.36));
+      animation: cometMars 80s linear infinite, planetGlow1 9s ease-in-out infinite;
     }
     .planet-mars .planet-body {
       background:
@@ -370,14 +367,13 @@
         0 0 110px rgba(192,96,255,0.18);
     }
 
-    /* ── Pearl ice moon (bottom-right small) ── */
+    /* ── Pearl ice moon — drifts diagonally top → bottom ── */
     .planet-moon {
-      bottom: 18%;
-      right: 3.5%;
+      top: 0;
+      right: 0;
       width: 68px;
       height: 68px;
-      animation: planetDrift4 22s ease-in-out infinite, planetGlow2 6.5s ease-in-out infinite;
-      filter: drop-shadow(0 0 22px rgba(248,240,255,0.32));
+      animation: cometMoon 65s linear infinite, planetGlow2 6.5s ease-in-out infinite;
     }
     .planet-moon .planet-body {
       background:
@@ -397,38 +393,41 @@
         0 0 80px rgba(192,96,255,0.14);
     }
 
-    /* ── Irregular drifting paths (5+ keyframes per orbit) ── */
-    @keyframes planetDrift1 {
-      0%   { transform: translate(0, 0)        rotate(0deg);  }
-      18%  { transform: translate(14px, -10px)  rotate(2deg);  }
-      36%  { transform: translate(-6px, -22px)  rotate(-2deg); }
-      54%  { transform: translate(18px, -14px)  rotate(3deg);  }
-      72%  { transform: translate(-12px, 8px)   rotate(-3deg); }
-      88%  { transform: translate(6px, 16px)    rotate(1deg);  }
-      100% { transform: translate(0, 0)         rotate(0deg);  }
+    /* ── Comet-like traversal paths: planets drift across the night sky ──
+       Each starts off-screen on one side and ends off-screen on the other,
+       so the loop snap-back is invisible. Wavy multi-stop paths give them
+       gentle organic curves instead of straight lines. ── */
+    @keyframes cometEarth {
+      /* left → right, gentle wave downward */
+      0%   { transform: translate(-200px,   2vh) rotate(0deg);   }
+      25%  { transform: translate(28vw,    14vh) rotate(8deg);   }
+      50%  { transform: translate(54vw,     6vh) rotate(-6deg);  }
+      75%  { transform: translate(80vw,    20vh) rotate(10deg);  }
+      100% { transform: translate(calc(100vw + 200px), 32vh) rotate(18deg); }
     }
-    @keyframes planetDrift2 {
-      0%   { transform: translate(0, 0)        rotate(0deg);  }
-      20%  { transform: translate(-12px, 14px)  rotate(-2deg); }
-      40%  { transform: translate(-22px, -6px)  rotate(2deg);  }
-      60%  { transform: translate(8px, 18px)    rotate(-3deg); }
-      80%  { transform: translate(16px, -10px)  rotate(2deg);  }
-      100% { transform: translate(0, 0)         rotate(0deg);  }
+    @keyframes cometJupiter {
+      /* right → left, slow horizontal drift across mid-sky */
+      0%   { transform: translate(200px,    0)   rotate(0deg);   }
+      30%  { transform: translate(-26vw,   12vh) rotate(-5deg);  }
+      55%  { transform: translate(-54vw,   -8vh) rotate(4deg);   }
+      80%  { transform: translate(-78vw,   18vh) rotate(-7deg);  }
+      100% { transform: translate(calc(-100vw - 280px), 6vh) rotate(-12deg); }
     }
-    @keyframes planetDrift3 {
-      0%   { transform: translate(0, 0)        rotate(0deg);  }
-      22%  { transform: translate(10px, -16px)  rotate(3deg);  }
-      45%  { transform: translate(-14px, -8px)  rotate(-2deg); }
-      68%  { transform: translate(8px, 12px)    rotate(2deg);  }
-      85%  { transform: translate(-6px, 18px)   rotate(-1deg); }
-      100% { transform: translate(0, 0)         rotate(0deg);  }
+    @keyframes cometMars {
+      /* bottom-left → top-right diagonal (anchor: bottom: 0; left: 0) */
+      0%   { transform: translate(-180px, 220px) rotate(0deg);   }
+      25%  { transform: translate(22vw,  -22vh)  rotate(6deg);   }
+      55%  { transform: translate(48vw,  -48vh)  rotate(-4deg);  }
+      80%  { transform: translate(72vw,  -78vh)  rotate(8deg);   }
+      100% { transform: translate(calc(100vw + 220px), -118vh) rotate(15deg); }
     }
-    @keyframes planetDrift4 {
-      0%   { transform: translate(0, 0)        rotate(0deg);  }
-      25%  { transform: translate(-10px, -14px) rotate(-3deg); }
-      48%  { transform: translate(14px, -10px)  rotate(2deg);  }
-      72%  { transform: translate(8px, 16px)    rotate(-2deg); }
-      100% { transform: translate(0, 0)         rotate(0deg);  }
+    @keyframes cometMoon {
+      /* top-right → bottom-left diagonal (anchor: top: 0; right: 0) */
+      0%   { transform: translate(200px,  -180px) rotate(0deg);   }
+      25%  { transform: translate(-22vw,   22vh)  rotate(-7deg);  }
+      55%  { transform: translate(-48vw,   48vh)  rotate(5deg);   }
+      80%  { transform: translate(-72vw,   76vh)  rotate(-9deg);  }
+      100% { transform: translate(calc(-100vw - 240px), 116vh) rotate(-14deg); }
     }
     @keyframes planetGlow1 {
       0%, 100% { filter: drop-shadow(0 0 28px rgba(96,208,255,0.32)) drop-shadow(0 0 0 transparent); }
@@ -446,11 +445,11 @@
       .con-w, .con-triangle { display: none; }
       .con-cat   { width: 130px; left: 4%; top: 7%; }
       .con-heart { width: 120px; }
-      .planet-earth   { width: 100px; height: 100px; left: 2%;  top: 16%; }
-      .planet-jupiter { width: 130px; height: 130px; right: -10px; }
-      .planet-jupiter .planet-ring { width: 230px; }
-      .planet-mars    { width: 70px;  height: 70px;  left: 6%; bottom: 22%; }
-      .planet-moon    { width: 50px;  height: 50px;  right: 14%; }
+      .planet-earth   { width: 90px;  height: 90px;  }
+      .planet-jupiter { width: 120px; height: 120px; }
+      .planet-jupiter .planet-ring { width: 200px; }
+      .planet-mars    { width: 64px;  height: 64px;  }
+      .planet-moon    { width: 48px;  height: 48px;  }
     }
 
     @keyframes twinkle {
@@ -772,10 +771,17 @@
       border-radius: 28px;
       padding: 32px 24px 28px;
       background:
-        radial-gradient(circle at 10% 0%, rgba(192,96,255,0.04), transparent 40%),
-        radial-gradient(circle at 100% 20%, rgba(255,112,184,0.03), transparent 38%);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
+        radial-gradient(circle at 10% 0%, rgba(192,96,255,0.05), transparent 40%),
+        radial-gradient(circle at 100% 20%, rgba(255,112,184,0.04), transparent 38%);
+      border: 1px solid rgba(255,112,184,0.42);
+      box-shadow:
+        0 24px 80px rgba(10,5,21,0.5),
+        0 0 48px rgba(255,112,184,0.32),
+        0 0 96px rgba(192,96,255,0.22),
+        0 0 0 1px rgba(255,112,184,0.16),
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        inset 0 -1px 0 rgba(192,96,255,0.18),
+        inset 0 0 60px rgba(192,96,255,0.06);
       overflow: hidden;
     }
 
@@ -978,43 +984,18 @@
           rgba(192,96,255,0.06) 45%,
           rgba(255,112,184,0.08) 100%),
         rgba(22,12,40,0.42);
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,112,184,0.5);
       -webkit-backdrop-filter: blur(26px) saturate(170%) brightness(112%);
               backdrop-filter: blur(26px) saturate(170%) brightness(112%);
       box-shadow:
         0 14px 44px rgba(10,5,21,0.55),
-        0 0 28px rgba(192,96,255,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.22),
-        inset 0 -1px 0 rgba(255,112,184,0.10),
-        inset 0 0 28px rgba(192,96,255,0.05);
-      animation: cardBreathe 5s ease-in-out infinite;
-      transition: transform 0.35s ease;
-    }
-    @keyframes cardBreathe {
-      0%, 100% {
-        border-color: rgba(255,255,255,0.18);
-        box-shadow:
-          0 14px 44px rgba(10,5,21,0.55),
-          0 0 22px rgba(192,96,255,0.16),
-          0 0 0 1px rgba(255,255,255,0.04),
-          inset 0 1px 0 rgba(255,255,255,0.22),
-          inset 0 -1px 0 rgba(255,112,184,0.10),
-          inset 0 0 28px rgba(192,96,255,0.05);
-      }
-      50% {
-        border-color: rgba(255,112,184,0.55);
-        box-shadow:
-          0 14px 44px rgba(10,5,21,0.55),
-          0 0 38px rgba(255,112,184,0.42),
-          0 0 64px rgba(192,96,255,0.28),
-          0 0 0 1px rgba(255,112,184,0.18),
-          inset 0 1px 0 rgba(255,255,255,0.3),
-          inset 0 -1px 0 rgba(255,112,184,0.22),
-          inset 0 0 38px rgba(255,112,184,0.12);
-      }
-    }
-    .info-block:nth-child(2n) {
-      animation-delay: -2.5s;
+        0 0 34px rgba(255,112,184,0.4),
+        0 0 64px rgba(192,96,255,0.26),
+        0 0 0 1px rgba(255,112,184,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.28),
+        inset 0 -1px 0 rgba(255,112,184,0.2),
+        inset 0 0 36px rgba(255,112,184,0.1);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
     .info-block::before {
       content: "";
@@ -1046,17 +1027,16 @@
       opacity: 0.75;
     }
     .info-block:hover {
-      transform: translateY(-2px);
-      animation-play-state: paused;
-      border-color: rgba(255,255,255,0.32);
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.5);
       box-shadow:
-        0 18px 54px rgba(10,5,21,0.6),
-        0 0 50px rgba(255,112,184,0.42),
-        0 0 90px rgba(192,96,255,0.3),
-        0 0 0 1px rgba(255,112,184,0.24),
-        inset 0 1px 0 rgba(255,255,255,0.32),
-        inset 0 -1px 0 rgba(255,112,184,0.22),
-        inset 0 0 38px rgba(255,112,184,0.14);
+        0 20px 60px rgba(10,5,21,0.65),
+        0 0 56px rgba(255,112,184,0.55),
+        0 0 100px rgba(192,96,255,0.36),
+        0 0 0 1px rgba(255,112,184,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.36),
+        inset 0 -1px 0 rgba(255,112,184,0.28),
+        inset 0 0 44px rgba(255,112,184,0.16);
     }
 
     .info-label {

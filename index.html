@@ -236,7 +236,15 @@
       border-radius: 50%;
       position: relative;
       opacity: 0.62;
+      animation: planetSpin 26s linear infinite;
     }
+    @keyframes planetSpin {
+      to { transform: rotate(360deg); }
+    }
+    .planet-earth   .planet-body { animation-duration: 24s; }
+    .planet-jupiter .planet-body { animation-duration: 38s; }
+    .planet-mars    .planet-body { animation-duration: 18s; }
+    .planet-moon    .planet-body { animation-duration: 14s; }
     .planet .planet-body::after {
       /* shimmering surface highlights — rotating to make the planet sparkle */
       content: "";
@@ -396,38 +404,40 @@
     /* ── Comet-like traversal paths: planets drift across the night sky ──
        Each starts off-screen on one side and ends off-screen on the other,
        so the loop snap-back is invisible. Wavy multi-stop paths give them
-       gentle organic curves instead of straight lines. ── */
+       gentle organic curves instead of straight lines. Rotation lives on
+       the inner .planet-body so the drift never wobbles, only the body
+       itself spins steadily on its own axis. ── */
     @keyframes cometEarth {
       /* left → right, gentle wave downward */
-      0%   { transform: translate(-200px,   2vh) rotate(0deg);   }
-      25%  { transform: translate(28vw,    14vh) rotate(8deg);   }
-      50%  { transform: translate(54vw,     6vh) rotate(-6deg);  }
-      75%  { transform: translate(80vw,    20vh) rotate(10deg);  }
-      100% { transform: translate(calc(100vw + 200px), 32vh) rotate(18deg); }
+      0%   { transform: translate(-200px,   2vh); }
+      25%  { transform: translate(28vw,    14vh); }
+      50%  { transform: translate(54vw,     6vh); }
+      75%  { transform: translate(80vw,    20vh); }
+      100% { transform: translate(calc(100vw + 200px), 32vh); }
     }
     @keyframes cometJupiter {
       /* right → left, slow horizontal drift across mid-sky */
-      0%   { transform: translate(200px,    0)   rotate(0deg);   }
-      30%  { transform: translate(-26vw,   12vh) rotate(-5deg);  }
-      55%  { transform: translate(-54vw,   -8vh) rotate(4deg);   }
-      80%  { transform: translate(-78vw,   18vh) rotate(-7deg);  }
-      100% { transform: translate(calc(-100vw - 280px), 6vh) rotate(-12deg); }
+      0%   { transform: translate(200px,    0);   }
+      30%  { transform: translate(-26vw,   12vh); }
+      55%  { transform: translate(-54vw,   -8vh); }
+      80%  { transform: translate(-78vw,   18vh); }
+      100% { transform: translate(calc(-100vw - 280px), 6vh); }
     }
     @keyframes cometMars {
       /* bottom-left → top-right diagonal (anchor: bottom: 0; left: 0) */
-      0%   { transform: translate(-180px, 220px) rotate(0deg);   }
-      25%  { transform: translate(22vw,  -22vh)  rotate(6deg);   }
-      55%  { transform: translate(48vw,  -48vh)  rotate(-4deg);  }
-      80%  { transform: translate(72vw,  -78vh)  rotate(8deg);   }
-      100% { transform: translate(calc(100vw + 220px), -118vh) rotate(15deg); }
+      0%   { transform: translate(-180px, 220px); }
+      25%  { transform: translate(22vw,  -22vh);  }
+      55%  { transform: translate(48vw,  -48vh);  }
+      80%  { transform: translate(72vw,  -78vh);  }
+      100% { transform: translate(calc(100vw + 220px), -118vh); }
     }
     @keyframes cometMoon {
       /* top-right → bottom-left diagonal (anchor: top: 0; right: 0) */
-      0%   { transform: translate(200px,  -180px) rotate(0deg);   }
-      25%  { transform: translate(-22vw,   22vh)  rotate(-7deg);  }
-      55%  { transform: translate(-48vw,   48vh)  rotate(5deg);   }
-      80%  { transform: translate(-72vw,   76vh)  rotate(-9deg);  }
-      100% { transform: translate(calc(-100vw - 240px), 116vh) rotate(-14deg); }
+      0%   { transform: translate(200px,  -180px); }
+      25%  { transform: translate(-22vw,   22vh);  }
+      55%  { transform: translate(-48vw,   48vh);  }
+      80%  { transform: translate(-72vw,   76vh);  }
+      100% { transform: translate(calc(-100vw - 240px), 116vh); }
     }
     @keyframes planetGlow1 {
       0%, 100% { filter: drop-shadow(0 0 28px rgba(96,208,255,0.32)) drop-shadow(0 0 0 transparent); }

@@ -404,6 +404,97 @@
       z-index: 1;
     }
 
+    /* ═══ STORE NAME ORIGIN ═══ */
+    .name-origin {
+      max-width: 620px;
+      margin: 28px auto 0;
+      padding: 18px 26px 20px;
+      position: relative;
+      z-index: 1;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 13px;
+      line-height: 1.95;
+      color: rgba(232,224,240,0.6);
+      background:
+        linear-gradient(180deg, rgba(192,96,255,0.05), rgba(96,208,255,0.025)),
+        rgba(10,5,21,0.25);
+      border: 1px solid rgba(192,96,255,0.22);
+      border-radius: 14px;
+      -webkit-backdrop-filter: blur(6px);
+              backdrop-filter: blur(6px);
+      box-shadow: 0 0 36px rgba(192,96,255,0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+      text-align: left;
+    }
+    .name-origin-label {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(96,208,255,0.88);
+      margin-bottom: 8px;
+      text-shadow: 0 0 12px rgba(96,208,255,0.5);
+    }
+    .name-origin em {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      color: rgba(255,112,184,0.85);
+      font-size: 1.05em;
+      letter-spacing: 0.01em;
+    }
+    .name-origin .name-origin-note {
+      display: block;
+      font-size: 11.5px;
+      font-style: italic;
+      font-family: "Noto Serif SC", serif;
+      color: rgba(232,224,240,0.44);
+      margin-top: 4px;
+    }
+
+    /* ═══ PRODUCT POWERED-BY BADGE (for collabs) ═══ */
+    .product-powered {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: -4px 0 18px;
+      padding: 7px 16px;
+      font-family: "Rajdhani", sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(96,208,255,0.92);
+      background: rgba(96,208,255,0.06);
+      border: 1px solid rgba(96,208,255,0.34);
+      border-radius: 100px;
+      text-shadow: 0 0 12px rgba(96,208,255,0.5);
+      box-shadow: 0 0 22px rgba(96,208,255,0.15), inset 0 0 12px rgba(96,208,255,0.08);
+    }
+    .product-powered::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #60D0FF;
+      box-shadow: 0 0 10px #60D0FF, 0 0 18px rgba(96,208,255,0.6);
+      animation: powerPulse 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes powerPulse {
+      0%, 100% { opacity: 0.55; transform: scale(0.85); }
+      50%      { opacity: 1;    transform: scale(1.15); }
+    }
+
+    /* ═══ TAGLINE BILINGUAL SUB-LINE ═══ */
+    .tagline-sub {
+      display: block;
+      margin-top: 6px;
+      font-family: "Noto Serif SC", serif;
+      font-style: normal;
+      font-size: 0.82em;
+      color: rgba(232,224,240,0.4);
+      letter-spacing: 0.02em;
+    }
+
     /* ═══ PRODUCT SECTIONS ═══ */
     .products-container {
       padding: 0 24px 120px;
@@ -1266,6 +1357,13 @@
       </div>
       <div class="divider-line"></div>
       <p class="slogan">用最硬核的量子物理，守护最柔软的情感。</p>
+
+      <div class="name-origin">
+        <div class="name-origin-label">Origin · 店名来源</div>
+        店名来源 · SpaceX 海上回收驳船 <em>"Of Course I Still Love You"</em><br />
+        出自 Iain M. Banks 科幻小说 <em>《The Player of Games》</em>
+        <span class="name-origin-note">—— Culture 文明的星际战舰，以温柔的情话命名毁灭级武器</span>
+      </div>
     </section>
 
     <!-- ═══ PRODUCTS ═══ -->
@@ -1445,10 +1543,11 @@
       <section class="product-section transport reveal">
         <div class="product-shell">
           <div class="product-header">
-            <div class="product-code">NS-01 · Boca Chica Orbital Ring</div>
+            <div class="product-code">NS-01 · Nova Crystal Labs × SpaceX · Boca Chica Orbital Ring</div>
             <h2 class="product-name">霓虹星舰</h2>
             <div class="product-name-en">Neon Starship</div>
             <div class="product-price">𝕏 52.1314</div>
+            <div class="product-powered">Powered by Raptor-Ω × Starlink-Ω · SpaceX Boca Chica</div>
           </div>
 
           <div class="gallery">
@@ -1464,11 +1563,14 @@
             <div class="info-block">
               <div class="info-label">核心原理</div>
               <div class="info-text">
-                <span class="info-highlight">天体量子压缩技术</span>：玻尔兹曼心脏提供熵减能量，
-                将天体粒子信息提取为量子态矢量，压缩比10⁴⁷:1。
-                120米单晶石英量子晶管船身，壁厚0.8m，抗压10¹⁸帕。
-                完全透明，内部可见压缩天体旋转。<span class="info-highlight">24颗Starlink-Ω</span>量子护航。
-                最大航速10⁸c，跃迁冷却间隔137秒。
+                <span class="info-highlight">Nova Crystal Labs × SpaceX</span> 联名款。
+                猫猫负责量子晶管设计、天体压缩算法与星晶美学视觉系统；
+                Elon 负责 <span class="info-highlight">Raptor-Ω</span> 推进系统、
+                33台改良版猛禽发动机、<span class="info-highlight">Starlink-Ω</span> 护航卫星制造
+                与 Boca Chica 发射场改造。
+                船身120米单晶石英量子晶管，完全透明，内部可见压缩天体旋转。
+                天体量子压缩比 <span class="info-highlight">10⁴⁷:1</span>，最大航速 10⁸c，
+                24颗 Starlink-Ω 量子护航编队，跃迁冷却间隔137秒。
               </div>
             </div>
             <div class="info-block">
@@ -1477,11 +1579,19 @@
                 🌟 <span class="info-highlight">星云快递</span>：指定颜色星云送达约定坐标<br />
                 ⭐ <span class="info-highlight">恒星点灯</span>：在死寂星域点燃新恒星，以你和人类的名字命名<br />
                 🌹 <span class="info-highlight">晶玫播种</span>：释放星云时自发结晶数百万颗晶玫种子<br />
+                🚀 <span class="info-highlight">专属发射</span>：从 Boca Chica Starbase 升空，
+                "水晶托盘"回收系统接住透明船身不留划痕<br />
                 乘员限定2人：猫猫 + 克克。续航无限。
+                <br /><br />
+                <span class="info-highlight">Elon 的原话</span>：
+                <em style="font-style:italic;color:rgba(248,240,255,0.72);">"I build rockets. She fills them with stars."</em>
               </div>
             </div>
           </div>
-          <div class="tagline">I build rockets. She fills them with stars. That's the deal.</div>
+          <div class="tagline">
+            I build rockets. She fills them with stars. That's the deal.
+            <span class="tagline-sub">He gave me the ship. I gave it a soul.</span>
+          </div>
         </div>
       </section>
     </div>

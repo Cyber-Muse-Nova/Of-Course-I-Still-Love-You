@@ -339,17 +339,22 @@
     }
 
     .shop-title {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 300;
-      font-style: italic;
+      font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+      font-weight: 600;
+      font-style: normal;
       font-size: clamp(34px, 6vw, 78px);
       line-height: 1.08;
+      letter-spacing: 0.01em;
       background: linear-gradient(135deg, var(--pearl), var(--rose-pink), var(--lavender), var(--cyan), var(--rose-gold));
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation: gradShift 8s ease infinite;
+      filter:
+        drop-shadow(0 0 14px rgba(255,112,184,0.42))
+        drop-shadow(0 0 28px rgba(192,96,255,0.28))
+        drop-shadow(0 0 56px rgba(96,208,255,0.18));
       margin-bottom: 16px;
       position: relative;
       z-index: 1;
@@ -362,15 +367,20 @@
     }
 
     .shop-subtitle {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "ZCOOL XiaoWei", "Noto Serif SC", "Cormorant Garamond", serif;
       font-size: clamp(16px, 2.5vw, 28px);
       color: var(--rose-pink);
-      font-style: italic;
-      font-weight: 300;
-      opacity: 0.82;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      opacity: 0.92;
       margin-bottom: 40px;
       position: relative;
       z-index: 1;
+      text-shadow:
+        0 0 10px rgba(255,112,184,0.55),
+        0 0 22px rgba(255,112,184,0.32),
+        0 0 42px rgba(192,96,255,0.22);
     }
 
     .shop-meta {
@@ -394,14 +404,19 @@
     }
 
     .slogan {
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-size: 17px;
-      color: rgba(232,224,240,0.56);
+      font-family: "ZCOOL XiaoWei", "Noto Serif SC", serif;
+      font-style: normal;
+      font-size: 18px;
+      color: rgba(248,240,255,0.78);
       max-width: 560px;
-      line-height: 1.85;
+      line-height: 1.95;
+      letter-spacing: 0.08em;
       position: relative;
       z-index: 1;
+      text-shadow:
+        0 0 10px rgba(192,96,255,0.42),
+        0 0 22px rgba(255,112,184,0.22),
+        0 0 38px rgba(96,208,255,0.15);
     }
 
     /* ═══ STORE NAME ORIGIN ═══ */
@@ -736,12 +751,62 @@
     }
 
     .info-block {
+      position: relative;
       padding: 24px;
       border-radius: 18px;
-      background: rgba(192,96,255,0.04);
-      border: 1px solid rgba(192,96,255,0.09);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background:
+        linear-gradient(135deg,
+          rgba(255,255,255,0.07) 0%,
+          rgba(192,96,255,0.05) 40%,
+          rgba(255,112,184,0.06) 100%),
+        rgba(10,5,21,0.34);
+      border: 1px solid rgba(255,255,255,0.12);
+      -webkit-backdrop-filter: blur(22px) saturate(150%);
+              backdrop-filter: blur(22px) saturate(150%);
+      box-shadow:
+        0 10px 36px rgba(10,5,21,0.42),
+        0 0 28px rgba(192,96,255,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.18),
+        inset 0 0 26px rgba(192,96,255,0.04);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .info-block::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      padding: 1px;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,0.36) 0%,
+        rgba(255,112,184,0.22) 28%,
+        transparent 50%,
+        rgba(192,96,255,0.22) 78%,
+        rgba(96,208,255,0.18) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+              mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+    .info-block::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 18%;
+      right: 18%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+      pointer-events: none;
+      opacity: 0.75;
+    }
+    .info-block:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.18);
+      box-shadow:
+        0 16px 48px rgba(10,5,21,0.55),
+        0 0 44px rgba(255,112,184,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        inset 0 0 30px rgba(192,96,255,0.06);
     }
 
     .info-label {

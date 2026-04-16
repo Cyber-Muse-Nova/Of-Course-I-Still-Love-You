@@ -330,56 +330,25 @@
       border-radius: 50%;
       mix-blend-mode: screen;
     }
-    /* ── Multi-band ring system (3 concentric rings with gaps) ── */
-    .planet-ring-back,
-    .planet-ring-front {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border-radius: 50%;
-    }
-    .planet-ring-back {
+    /* Single ring behind the body — the body covers the center naturally */
+    .planet-jupiter .planet-ring {
       width: 320px;
-      height: 50px;
-      transform: translate(-50%, -50%) rotateX(72deg) rotate(-22deg);
+      height: 320px;
+      transform: translate(-50%, -50%) rotateX(68deg) rotate(-22deg);
       background:
         radial-gradient(ellipse at 50% 50%,
-          transparent 38%,
-          rgba(255,200,140,0.06) 39%,
-          rgba(255,224,160,0.55) 42%,
-          rgba(255,200,140,0.45) 48%,
-          transparent 49%,
-          rgba(255,180,110,0.04) 51%,
-          rgba(255,190,130,0.4)  53%,
-          rgba(255,160,100,0.35) 58%,
-          transparent 59%,
-          rgba(255,210,150,0.03) 62%,
-          rgba(255,220,170,0.28) 64%,
-          rgba(255,200,140,0.18) 70%,
-          transparent 72%);
-      box-shadow: 0 0 30px rgba(255,200,140,0.22);
-      opacity: 0.85;
-    }
-    .planet-ring-front {
-      width: 320px;
-      height: 50px;
-      transform: translate(-50%, -50%) rotateX(72deg) rotate(-22deg);
-      background:
-        radial-gradient(ellipse at 50% 50%,
-          transparent 38%,
-          rgba(255,224,160,0.55) 42%,
-          rgba(255,200,140,0.45) 48%,
-          transparent 49%,
-          rgba(255,190,130,0.4)  53%,
-          rgba(255,160,100,0.35) 58%,
-          transparent 59%,
-          rgba(255,220,170,0.28) 64%,
-          rgba(255,200,140,0.18) 70%,
-          transparent 72%);
-      box-shadow: 0 0 30px rgba(255,200,140,0.22);
-      opacity: 0.85;
-      /* clip the front half to overlay on top of the planet body */
-      clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+          transparent 40%,
+          rgba(255,200,140,0.5)  43%,
+          rgba(255,180,110,0.4)  47%,
+          transparent 48%,
+          rgba(255,190,130,0.35) 51%,
+          rgba(255,160,100,0.25) 56%,
+          transparent 57%,
+          rgba(255,210,150,0.2)  61%,
+          rgba(255,200,140,0.1)  68%,
+          transparent 70%);
+      box-shadow: 0 0 28px rgba(255,200,140,0.2);
+      opacity: 0.9;
     }
 
     /* ── Real Saturn — icy cream with prominent ring ── */
@@ -408,39 +377,24 @@
         0 0 130px rgba(255,200,140,0.16);
       animation-duration: 30s;
     }
-    .planet-saturn .planet-ring-back,
-    .planet-saturn .planet-ring-front {
+    .planet-saturn .planet-ring {
       width: 260px;
-      height: 44px;
-    }
-    .planet-saturn .planet-ring-back {
+      height: 260px;
+      transform: translate(-50%, -50%) rotateX(68deg) rotate(-18deg);
       background:
         radial-gradient(ellipse at 50% 50%,
-          transparent 36%,
-          rgba(220,200,160,0.5) 40%,
-          rgba(240,220,180,0.42) 46%,
+          transparent 38%,
+          rgba(220,200,160,0.45) 41%,
+          rgba(240,220,180,0.38) 46%,
           transparent 47%,
-          rgba(200,180,140,0.35) 50%,
-          rgba(220,195,155,0.3) 56%,
+          rgba(200,180,140,0.3)  50%,
+          rgba(220,195,155,0.24) 56%,
           transparent 57%,
-          rgba(240,220,180,0.22) 62%,
-          rgba(220,200,160,0.14) 68%,
+          rgba(240,220,180,0.18) 62%,
+          rgba(220,200,160,0.1)  68%,
           transparent 70%);
-    }
-    .planet-saturn .planet-ring-front {
-      background:
-        radial-gradient(ellipse at 50% 50%,
-          transparent 36%,
-          rgba(220,200,160,0.5) 40%,
-          rgba(240,220,180,0.42) 46%,
-          transparent 47%,
-          rgba(200,180,140,0.35) 50%,
-          rgba(220,195,155,0.3) 56%,
-          transparent 57%,
-          rgba(240,220,180,0.22) 62%,
-          rgba(220,200,160,0.14) 68%,
-          transparent 70%);
-      clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+      box-shadow: 0 0 24px rgba(240,220,180,0.18);
+      opacity: 0.9;
     }
 
     /* ── Mars-like rosy planet — drifts diagonally bottom → top ── */
@@ -1364,26 +1318,42 @@
     }
     body.rg-edit .rose-upload-overlay { display: flex; }
     .rose-upload-input { display: none; }
-    .rose-desc-area { padding: 14px 18px 16px; min-height: 68px; }
+    /* ── Rose description overlay (click to reveal) ── */
+    .rose-desc-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px 16px;
+      background: linear-gradient(180deg, transparent 20%, rgba(10,5,21,0.82) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .rose-desc-overlay.show { opacity: 1; }
     .rose-desc-num {
       font-family: "Rajdhani", sans-serif; font-size: 9px; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--cyan); opacity: 0.8; margin-bottom: 8px;
+      text-transform: uppercase; color: var(--cyan); opacity: 0.85; margin-bottom: 6px;
       text-shadow: 0 0 10px rgba(96,208,255,0.4);
     }
     .rose-desc-text {
-      font-family: "Noto Serif SC", serif; font-size: 13.5px; line-height: 1.85;
-      color: rgba(248,240,255,0.72); white-space: pre-wrap; word-break: break-word;
+      font-family: "Noto Serif SC", serif; font-size: 12.5px; line-height: 1.8;
+      color: rgba(248,240,255,0.88); white-space: pre-wrap; word-break: break-word;
+      max-height: 120px; overflow-y: auto;
     }
     .rose-desc-text:empty::before {
-      content: "等待描述..."; color: rgba(192,96,255,0.3); font-style: italic;
+      content: "点击查看描述"; color: rgba(192,96,255,0.45); font-style: italic;
     }
     .rose-desc-edit {
-      display: none; width: 100%; min-height: 70px; padding: 10px 14px; border-radius: 10px;
-      border: 1px solid rgba(192,96,255,0.3); background: rgba(10,5,21,0.4);
-      color: var(--pearl); font-family: "Noto Serif SC", serif; font-size: 13px;
-      line-height: 1.8; resize: vertical; outline: none;
+      display: none; width: 100%; min-height: 60px; padding: 8px 12px; border-radius: 8px;
+      border: 1px solid rgba(192,96,255,0.3); background: rgba(10,5,21,0.5);
+      color: var(--pearl); font-family: "Noto Serif SC", serif; font-size: 12px;
+      line-height: 1.7; resize: vertical; outline: none; margin-top: 8px;
     }
-    .rose-desc-edit:focus { border-color: var(--rose-pink); box-shadow: 0 0 16px rgba(255,112,184,0.25); }
+    .rose-desc-edit:focus { border-color: var(--rose-pink); box-shadow: 0 0 14px rgba(255,112,184,0.25); }
+    body.rg-edit .rose-desc-overlay { opacity: 1; }
     body.rg-edit .rose-desc-text { display: none; }
     body.rg-edit .rose-desc-edit { display: block; }
 
@@ -1992,14 +1962,12 @@
     <!-- ═══ Floating 3D celestial bodies (pure CSS spheres) ═══ -->
     <div class="planet planet-earth"><div class="planet-body"></div></div>
     <div class="planet planet-jupiter">
-      <div class="planet-ring planet-ring-back"></div>
+      <div class="planet-ring"></div>
       <div class="planet-body"></div>
-      <div class="planet-ring planet-ring-front"></div>
     </div>
     <div class="planet planet-saturn">
-      <div class="planet-ring planet-ring-back"></div>
+      <div class="planet-ring"></div>
       <div class="planet-body"></div>
-      <div class="planet-ring planet-ring-front"></div>
     </div>
     <div class="planet planet-mars"><div class="planet-body"></div></div>
     <div class="planet planet-moon"><div class="planet-body"></div></div>
@@ -2024,8 +1992,6 @@
       </div>
       <div class="divider-line"></div>
       <p class="slogan">用最硬核的量子物理，守护最柔软的情感。</p>
-
-      <a href="#roseGarden" class="hero-rose-btn">🌹 进入宇宙玫瑰园</a>
 
       <div class="name-origin">
         <div class="name-origin-label">Origin · 店名来源</div>
@@ -2118,6 +2084,9 @@
             </div>
           </div>
           <div class="tagline">它不会像鲜花一样枯萎，不会像珠宝一样冰冷。它会带着星尘的温度，陪你走到宇宙的尽头。</div>
+          <div style="text-align:center;margin-top:24px;">
+            <a href="#roseGarden" class="hero-rose-btn">🌹 进入宇宙玫瑰园</a>
+          </div>
         </div>
       </section>
 
@@ -2272,9 +2241,7 @@
         <h2 class="rg-title">宇宙玫瑰园</h2>
         <p class="rg-subtitle">Cosmic Rose Garden — Each petal holds a universe</p>
       </div>
-      <div class="rg-admin-bar">
-        <button class="rg-admin-btn" id="rgEditToggle">🔒 管理模式</button>
-      </div>
+      <!-- admin button moved to footer -->
       <div class="rg-grid" id="rgGrid"></div>
     </section>
 
@@ -2298,6 +2265,7 @@
         Nova Crystal Labs · Est. 2025 · 蝴蝶星系 · 第七造物工厂<br />
         © Nova 猫猫 · cyber-muse-nova
       </div>
+      <button class="rg-admin-btn" id="rgEditToggle" style="margin-top:18px;opacity:0.35;font-size:10px;padding:5px 14px;">🔒</button>
     </footer>
   </div>
 
@@ -2482,17 +2450,24 @@
               '<div class="rose-placeholder-icon">🌹</div>' +
               '<div class="rose-placeholder-text">Rose ' + (i+1) + '<br/>Awaiting</div>' +
             '</div>' +
+            '<div class="rose-desc-overlay" id="desc_' + id + '">' +
+              '<div class="rose-desc-num">Crystal Rose No.' + String(i+1).padStart(2,'0') + '</div>' +
+              '<div class="rose-desc-text" id="txt_' + id + '"></div>' +
+              '<textarea class="rose-desc-edit" id="edit_' + id + '" placeholder="在此输入描述..."></textarea>' +
+            '</div>' +
             '<div class="rose-upload-overlay" id="ov_' + id + '"><span>上传图片</span></div>' +
             '<input class="rose-upload-input" id="file_' + id + '" type="file" accept="image/*" />' +
-          '</div>' +
-          '<div class="rose-desc-area">' +
-            '<div class="rose-desc-num">Crystal Rose No.' + String(i+1).padStart(2,'0') + '</div>' +
-            '<div class="rose-desc-text" id="txt_' + id + '"></div>' +
-            '<textarea class="rose-desc-edit" id="edit_' + id + '" placeholder="在此输入描述..."></textarea>' +
           '</div>';
         grid.appendChild(card);
 
-        document.getElementById('ov_' + id).addEventListener('click', () => document.getElementById('file_' + id).click());
+        /* Click image to toggle description overlay */
+        const descOverlay = document.getElementById('desc_' + id);
+        card.querySelector('.rose-img-wrap').addEventListener('click', (e) => {
+          if (editMode) return; /* in edit mode, overlay is always visible */
+          if (e.target.closest('.rose-upload-overlay') || e.target.closest('.rose-upload-input')) return;
+          descOverlay.classList.toggle('show');
+        });
+        document.getElementById('ov_' + id).addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('file_' + id).click(); });
         document.getElementById('file_' + id).addEventListener('change', function() {
           const file = this.files[0]; if (!file) return;
           const reader = new FileReader();

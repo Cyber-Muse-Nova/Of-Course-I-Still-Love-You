@@ -264,48 +264,6 @@
       50%      { opacity: 1;    transform: scale(1.06); }
     }
 
-    /* ── Orbiting particle ring around each planet ── */
-    .planet::before {
-      content: "";
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      margin: -2px 0 0 -2px;
-      background: transparent;
-      box-shadow:
-         24px -34px 4px 1px  rgba(255,255,255,0.85),
-        -38px  18px 3px 0.5px rgba(255,112,184,0.75),
-         44px  28px 4px 1px  rgba(96,208,255,0.75),
-        -22px -44px 3px 0.8px rgba(192,96,255,0.7),
-         54px -12px 3px 0.5px rgba(255,208,160,0.75),
-        -50px -24px 4px 1px  rgba(255,255,255,0.6),
-         14px  56px 3px 0.8px rgba(255,112,184,0.65),
-        -34px  46px 3px 0.5px rgba(96,208,255,0.65),
-         60px  10px 3px 0.6px rgba(192,96,255,0.6),
-        -10px -60px 4px 0.8px rgba(255,208,160,0.7);
-      animation: planetParticles 18s linear infinite;
-      mix-blend-mode: screen;
-      filter: blur(0.4px);
-      z-index: 1;
-    }
-    .planet-earth::before   { animation-duration: 16s; }
-    .planet-jupiter::before { animation-duration: 24s; }
-    .planet-mars::before    { animation-duration: 14s; }
-    .planet-moon::before    { animation-duration: 10s; box-shadow:
-         16px -22px 3px 0.5px rgba(255,255,255,0.8),
-        -24px  12px 2px 0.5px rgba(192,96,255,0.7),
-         28px  18px 3px 0.5px rgba(96,208,255,0.7),
-        -14px -28px 2px 0.5px rgba(255,112,184,0.65),
-         8px   32px 2px 0.5px rgba(255,208,160,0.7),
-        -32px -8px  3px 0.5px rgba(255,255,255,0.6);
-    }
-    @keyframes planetParticles {
-      to { transform: rotate(360deg); }
-    }
-
     /* ── Earth-like blue marble — drifts left → right across the sky ── */
     .planet-earth {
       top: 8%;

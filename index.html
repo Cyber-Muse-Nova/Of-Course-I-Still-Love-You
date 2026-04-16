@@ -1306,15 +1306,24 @@
       color: rgba(192,96,255,0.4); text-transform: uppercase;
     }
     .rose-upload-overlay {
-      position: absolute; inset: 0; display: none;
-      align-items: center; justify-content: center;
-      background: rgba(10,5,21,0.6); cursor: pointer;
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 4;
+      border-radius: 100px;
     }
     .rose-upload-overlay span {
       font-family: "Rajdhani", sans-serif; font-size: 11px; letter-spacing: 2px;
       text-transform: uppercase; color: var(--rose-pink);
-      padding: 10px 18px; border: 1px solid var(--rose-pink); border-radius: 100px;
+      padding: 10px 22px; border: 1px solid var(--rose-pink); border-radius: 100px;
+      background: rgba(10,5,21,0.75);
       box-shadow: 0 0 18px rgba(255,112,184,0.35);
+      white-space: nowrap;
     }
     body.rg-edit .rose-upload-overlay { display: flex; }
     .rose-upload-input { display: none; }

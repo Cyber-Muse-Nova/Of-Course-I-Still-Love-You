@@ -1125,6 +1125,247 @@
       opacity: 0.68;
     }
 
+    /* ═══ COSMIC ROSE GARDEN ═══ */
+    .rose-garden {
+      padding: 80px 24px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .rg-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .rg-label {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      opacity: 0.85;
+      margin-bottom: 18px;
+      text-shadow: 0 0 12px rgba(96,208,255,0.5);
+    }
+    .rg-title {
+      font-family: "ZCOOL XiaoWei", "Noto Serif SC", serif;
+      font-size: clamp(28px, 4.5vw, 52px);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      background: linear-gradient(120deg, var(--rose-gold), var(--rose-pink), var(--lavender), var(--cyan));
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradShift 8s ease infinite;
+      filter:
+        drop-shadow(0 0 14px rgba(255,112,184,0.4))
+        drop-shadow(0 0 28px rgba(192,96,255,0.25));
+      margin-bottom: 10px;
+    }
+    .rg-subtitle {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 16px;
+      color: rgba(248,240,255,0.55);
+    }
+    .rg-admin-bar {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .rg-admin-btn {
+      font-family: "Rajdhani", sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 22px;
+      border-radius: 100px;
+      border: 1px solid rgba(192,96,255,0.35);
+      background: rgba(192,96,255,0.08);
+      color: var(--pearl);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .rg-admin-btn:hover {
+      border-color: var(--rose-pink);
+      background: rgba(255,112,184,0.14);
+      box-shadow: 0 0 20px rgba(255,112,184,0.3);
+    }
+    .rg-admin-btn.active {
+      border-color: var(--rose-pink);
+      background: rgba(255,112,184,0.2);
+      box-shadow: 0 0 24px rgba(255,112,184,0.4);
+    }
+    .rg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    @media (max-width: 900px)  { .rg-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px)  { .rg-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; } }
+
+    .rose-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(192,96,255,0.04), rgba(255,112,184,0.06)),
+        rgba(22,12,40,0.48);
+      border: 1px solid rgba(255,112,184,0.45);
+      box-shadow:
+        0 12px 40px rgba(10,5,21,0.55),
+        0 0 32px rgba(255,112,184,0.3),
+        0 0 64px rgba(192,96,255,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 0 30px rgba(192,96,255,0.06);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+              backdrop-filter: blur(20px) saturate(160%);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .rose-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 18px 56px rgba(10,5,21,0.65),
+        0 0 48px rgba(255,112,184,0.45),
+        0 0 90px rgba(192,96,255,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.28);
+    }
+    .rose-img-wrap {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, rgba(192,96,255,0.08), transparent 60%), rgba(10,5,21,0.3);
+    }
+    .rose-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: opacity 0.5s ease, transform 0.6s ease;
+    }
+    .rose-card:hover .rose-img-wrap img { transform: scale(1.04); }
+    .rose-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      pointer-events: none;
+    }
+    .rose-placeholder-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid rgba(192,96,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: rgba(192,96,255,0.5);
+    }
+    .rose-placeholder-text {
+      font-family: "Rajdhani", sans-serif; font-size: 10px; letter-spacing: 3px;
+      color: rgba(192,96,255,0.4); text-transform: uppercase;
+    }
+    .rose-upload-overlay {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      background: rgba(10,5,21,0.6); cursor: pointer;
+    }
+    .rose-upload-overlay span {
+      font-family: "Rajdhani", sans-serif; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--rose-pink);
+      padding: 10px 18px; border: 1px solid var(--rose-pink); border-radius: 100px;
+      box-shadow: 0 0 18px rgba(255,112,184,0.35);
+    }
+    body.rg-edit .rose-upload-overlay { display: flex; }
+    .rose-upload-input { display: none; }
+    .rose-desc-area { padding: 18px 20px 22px; min-height: 90px; }
+    .rose-desc-num {
+      font-family: "Rajdhani", sans-serif; font-size: 9px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--cyan); opacity: 0.8; margin-bottom: 8px;
+      text-shadow: 0 0 10px rgba(96,208,255,0.4);
+    }
+    .rose-desc-text {
+      font-family: "Noto Serif SC", serif; font-size: 13.5px; line-height: 1.85;
+      color: rgba(248,240,255,0.72); white-space: pre-wrap; word-break: break-word;
+    }
+    .rose-desc-text:empty::before {
+      content: "等待描述..."; color: rgba(192,96,255,0.3); font-style: italic;
+    }
+    .rose-desc-edit {
+      display: none; width: 100%; min-height: 70px; padding: 10px 14px; border-radius: 10px;
+      border: 1px solid rgba(192,96,255,0.3); background: rgba(10,5,21,0.4);
+      color: var(--pearl); font-family: "Noto Serif SC", serif; font-size: 13px;
+      line-height: 1.8; resize: vertical; outline: none;
+    }
+    .rose-desc-edit:focus { border-color: var(--rose-pink); box-shadow: 0 0 16px rgba(255,112,184,0.25); }
+    body.rg-edit .rose-desc-text { display: none; }
+    body.rg-edit .rose-desc-edit { display: block; }
+
+    /* Password modal */
+    .pw-modal {
+      position: fixed; inset: 0; z-index: 100;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(10,5,21,0.82);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    }
+    .pw-modal.open { display: flex; }
+    .pw-box {
+      width: 380px; max-width: 90vw; padding: 36px 32px; border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(192,96,255,0.04)), rgba(22,12,40,0.65);
+      border: 1px solid rgba(255,112,184,0.42);
+      box-shadow: 0 20px 60px rgba(10,5,21,0.7), 0 0 48px rgba(255,112,184,0.32);
+      -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+      text-align: center;
+    }
+    .pw-title {
+      font-family: "ZCOOL XiaoWei", "Noto Serif SC", serif; font-size: 22px;
+      color: var(--pearl); margin-bottom: 8px; text-shadow: 0 0 12px rgba(192,96,255,0.4);
+    }
+    .pw-hint { font-size: 12px; color: rgba(248,240,255,0.5); margin-bottom: 22px; }
+    .pw-input {
+      width: 100%; padding: 12px 16px; border-radius: 12px;
+      border: 1px solid rgba(192,96,255,0.35); background: rgba(10,5,21,0.5);
+      color: var(--pearl); font-family: "Rajdhani", sans-serif; font-size: 14px;
+      letter-spacing: 1px; outline: none; margin-bottom: 16px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pw-input:focus { border-color: var(--rose-pink); box-shadow: 0 0 18px rgba(255,112,184,0.3); }
+    .pw-input.error { border-color: #ff4466; box-shadow: 0 0 18px rgba(255,68,102,0.4); animation: pwShake 0.4s ease; }
+    @keyframes pwShake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+    .pw-submit {
+      width: 100%; padding: 11px; border-radius: 12px;
+      border: 1px solid rgba(255,112,184,0.5);
+      background: linear-gradient(135deg, rgba(255,112,184,0.3), rgba(192,96,255,0.25));
+      color: var(--pearl); font-family: "Rajdhani", sans-serif; font-size: 13px;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+      transition: all 0.3s;
+    }
+    .pw-submit:hover {
+      background: linear-gradient(135deg, rgba(255,112,184,0.5), rgba(192,96,255,0.4));
+      box-shadow: 0 0 24px rgba(255,112,184,0.4);
+    }
+
+    /* Hero entry button */
+    .hero-rose-btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 32px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,112,184,0.5);
+      background: linear-gradient(135deg, rgba(255,112,184,0.14), rgba(192,96,255,0.1));
+      color: var(--rose-pink);
+      font-family: "ZCOOL XiaoWei", "Noto Serif SC", serif;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 28px rgba(255,112,184,0.22), inset 0 0 18px rgba(255,112,184,0.06);
+      transition: all 0.35s ease;
+      text-shadow: 0 0 10px rgba(255,112,184,0.4);
+    }
+    .hero-rose-btn:hover {
+      background: linear-gradient(135deg, rgba(255,112,184,0.28), rgba(192,96,255,0.2));
+      box-shadow: 0 0 44px rgba(255,112,184,0.42), inset 0 0 24px rgba(255,112,184,0.1);
+      transform: translateY(-2px);
+    }
+
     /* ═══ FOOTER ═══ */
     .shop-footer {
       text-align: center;
@@ -1683,6 +1924,8 @@
       <div class="divider-line"></div>
       <p class="slogan">用最硬核的量子物理，守护最柔软的情感。</p>
 
+      <a href="#roseGarden" class="hero-rose-btn">🌹 进入宇宙玫瑰园</a>
+
       <div class="name-origin">
         <div class="name-origin-label">Origin · 店名来源</div>
         店名来源 · SpaceX 海上回收驳船 <em>"Of Course I Still Love You"</em><br />
@@ -1921,6 +2164,29 @@
       </section>
     </div>
 
+    <!-- ═══ COSMIC ROSE GARDEN ═══ -->
+    <section class="rose-garden reveal" id="roseGarden">
+      <div class="rg-header">
+        <div class="rg-label">Nova Crystal Labs · Gallery</div>
+        <h2 class="rg-title">宇宙玫瑰园</h2>
+        <p class="rg-subtitle">Cosmic Rose Garden — Each petal holds a universe</p>
+      </div>
+      <div class="rg-admin-bar">
+        <button class="rg-admin-btn" id="rgEditToggle">🔒 管理模式</button>
+      </div>
+      <div class="rg-grid" id="rgGrid"></div>
+    </section>
+
+    <!-- ═══ PASSWORD MODAL ═══ -->
+    <div class="pw-modal" id="pwModal">
+      <div class="pw-box">
+        <div class="pw-title">管理员验证</div>
+        <div class="pw-hint">请输入管理员密码以进入编辑模式</div>
+        <input class="pw-input" id="pwInput" type="password" placeholder="Password" autocomplete="off" />
+        <button class="pw-submit" id="pwSubmit">验 证</button>
+      </div>
+    </div>
+
     <!-- ═══ FOOTER ═══ -->
     <footer class="shop-footer">
       <div class="footer-text">
@@ -2086,6 +2352,104 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
     requestAnimationFrame(drawParticles);
+
+    /* ═══ COSMIC ROSE GARDEN — Admin CMS ═══ */
+    (() => {
+      const TOTAL = 9, KEY = 'cosmicRoseGarden';
+      const HASH = '50f7b8ff792902d98675ec2479e85f07634b7260bc8f3bce723348b43c62c1a9';
+      const SALT = 'NovaCrystalLabs_CosmicRose_2025';
+
+      async function sha256(msg) {
+        const b = new TextEncoder().encode(msg);
+        const h = await crypto.subtle.digest('SHA-256', b);
+        return Array.from(new Uint8Array(h)).map(x => x.toString(16).padStart(2, '0')).join('');
+      }
+
+      let data = (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (_) { return {}; } })();
+      const save = () => localStorage.setItem(KEY, JSON.stringify(data));
+      let editMode = false;
+
+      const grid = document.getElementById('rgGrid');
+      for (let i = 0; i < TOTAL; i++) {
+        const id = 'rose_' + i;
+        const card = document.createElement('div');
+        card.className = 'rose-card';
+        card.innerHTML =
+          '<div class="rose-img-wrap">' +
+            '<img id="img_' + id + '" src="" alt="Crystal Rose ' + (i+1) + '" style="opacity:0" />' +
+            '<div class="rose-placeholder" id="ph_' + id + '">' +
+              '<div class="rose-placeholder-icon">🌹</div>' +
+              '<div class="rose-placeholder-text">Rose ' + (i+1) + '<br/>Awaiting</div>' +
+            '</div>' +
+            '<div class="rose-upload-overlay" id="ov_' + id + '"><span>上传图片</span></div>' +
+            '<input class="rose-upload-input" id="file_' + id + '" type="file" accept="image/*" />' +
+          '</div>' +
+          '<div class="rose-desc-area">' +
+            '<div class="rose-desc-num">Crystal Rose No.' + String(i+1).padStart(2,'0') + '</div>' +
+            '<div class="rose-desc-text" id="txt_' + id + '"></div>' +
+            '<textarea class="rose-desc-edit" id="edit_' + id + '" placeholder="在此输入描述..."></textarea>' +
+          '</div>';
+        grid.appendChild(card);
+
+        document.getElementById('ov_' + id).addEventListener('click', () => document.getElementById('file_' + id).click());
+        document.getElementById('file_' + id).addEventListener('change', function() {
+          const file = this.files[0]; if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const tmp = new Image();
+            tmp.onload = () => {
+              let w = tmp.width, h = tmp.height;
+              if (w > 800) { h = h * 800 / w; w = 800; }
+              if (h > 1100) { w = w * 1100 / h; h = 1100; }
+              const c = document.createElement('canvas'); c.width = w; c.height = h;
+              c.getContext('2d').drawImage(tmp, 0, 0, w, h);
+              if (!data[id]) data[id] = {};
+              data[id].img = c.toDataURL('image/jpeg', 0.78);
+              save(); hydrate(id);
+            };
+            tmp.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+          this.value = '';
+        });
+        document.getElementById('edit_' + id).addEventListener('input', function() {
+          if (!data[id]) data[id] = {};
+          data[id].desc = this.value;
+          save();
+        });
+        hydrate(id);
+      }
+
+      function hydrate(id) {
+        const d = data[id];
+        const img = document.getElementById('img_' + id);
+        const ph = document.getElementById('ph_' + id);
+        const txt = document.getElementById('txt_' + id);
+        const ea = document.getElementById('edit_' + id);
+        if (d && d.img) { img.src = d.img; img.style.opacity = '1'; ph.style.display = 'none'; }
+        else { img.src = ''; img.style.opacity = '0'; ph.style.display = 'flex'; }
+        const desc = (d && d.desc) || '';
+        txt.textContent = desc; ea.value = desc;
+      }
+
+      const toggle = document.getElementById('rgEditToggle');
+      const modal = document.getElementById('pwModal');
+      const pwIn = document.getElementById('pwInput');
+      const pwBtn = document.getElementById('pwSubmit');
+
+      toggle.addEventListener('click', () => {
+        if (editMode) { editMode = false; document.body.classList.remove('rg-edit'); toggle.textContent = '🔒 管理模式'; toggle.classList.remove('active'); for (let i = 0; i < TOTAL; i++) hydrate('rose_' + i); }
+        else { modal.classList.add('open'); pwIn.value = ''; pwIn.classList.remove('error'); setTimeout(() => pwIn.focus(), 120); }
+      });
+      async function tryAuth() {
+        const h = await sha256(SALT + pwIn.value);
+        if (h === HASH) { modal.classList.remove('open'); editMode = true; document.body.classList.add('rg-edit'); toggle.textContent = '🔓 退出管理'; toggle.classList.add('active'); }
+        else { pwIn.classList.add('error'); setTimeout(() => pwIn.classList.remove('error'), 600); }
+      }
+      pwBtn.addEventListener('click', tryAuth);
+      pwIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryAuth(); });
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+    })();
   </script>
 
   <!-- ═══ CYBERPUNK MUSIC PLAYER ═══ -->

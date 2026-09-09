@@ -2523,14 +2523,13 @@
           play: () => tryPlay(), pause: () => audio.pause(),
           previoustrack: () => loadTrack(current - 1, true),
           nexttrack: () => loadTrack(current + 1, true),
-          // iOS ignores setActionHandler(seek*, null) and keeps showing the skip-10
-          // buttons regardless, so make those buttons change tracks too instead of
-          // relying on iOS to swap them for previous/next icons.
-          seekbackward: () => loadTrack(current - 1, true),
-          seekforward: () => loadTrack(current + 1, true),
           seekto: (e) => seekTo(e.seekTime),
           stop: () => { audio.pause(); seekTo(0); }
         };
+        // Deliberately never call setActionHandler for seekbackward/seekforward at
+        // all (rather than setting them to null) to see whether iOS Now Playing
+        // then shows previous/next icons instead of the skip-10 icons it keeps
+        // showing even when they're explicitly set to null.
         for (const [action, handler] of Object.entries(actions)) {
           try { navigator.mediaSession.setActionHandler(action, handler); } catch (_) {}
         }

@@ -2523,8 +2523,10 @@
           play: () => tryPlay(), pause: () => audio.pause(),
           previoustrack: () => loadTrack(current - 1, true),
           nexttrack: () => loadTrack(current + 1, true),
-          seekbackward: (e) => seekTo(audio.currentTime - (e.seekOffset || 10)),
-          seekforward: (e) => seekTo(audio.currentTime + (e.seekOffset || 10)),
+          // Advertise track navigation rather than interval seeking to iOS Now Playing.
+          // Keep seekto below so the system progress slider can still scrub.
+          seekbackward: null,
+          seekforward: null,
           seekto: (e) => seekTo(e.seekTime),
           stop: () => { audio.pause(); seekTo(0); }
         };

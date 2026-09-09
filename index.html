@@ -2523,10 +2523,11 @@
           play: () => tryPlay(), pause: () => audio.pause(),
           previoustrack: () => loadTrack(current - 1, true),
           nexttrack: () => loadTrack(current + 1, true),
-          // Advertise track navigation rather than interval seeking to iOS Now Playing.
-          // Keep seekto below so the system progress slider can still scrub.
-          seekbackward: null,
-          seekforward: null,
+          // iOS ignores setActionHandler(seek*, null) and keeps showing the skip-10
+          // buttons regardless, so make those buttons change tracks too instead of
+          // relying on iOS to swap them for previous/next icons.
+          seekbackward: () => loadTrack(current - 1, true),
+          seekforward: () => loadTrack(current + 1, true),
           seekto: (e) => seekTo(e.seekTime),
           stop: () => { audio.pause(); seekTo(0); }
         };

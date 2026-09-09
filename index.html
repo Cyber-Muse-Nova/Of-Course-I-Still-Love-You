@@ -230,227 +230,26 @@
       will-change: transform, opacity;
       mix-blend-mode: screen;
     }
-    .planet .planet-body {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      position: relative;
-      opacity: 0.62;
-      animation: planetSpin 26s linear infinite;
-    }
-    @keyframes planetSpin {
-      to { transform: rotate(360deg); }
-    }
-    .planet-earth   .planet-body { animation-duration: 24s; }
-    .planet-jupiter .planet-body { animation-duration: 38s; }
-    .planet-mars    .planet-body { animation-duration: 18s; }
-    .planet-moon    .planet-body { animation-duration: 14s; }
-    .planet .planet-body::after {
-      /* shimmering surface highlights — pulse only, NO rotation */
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 22% 22%, rgba(255,255,255,0.5) 0%, transparent 14%),
-        radial-gradient(circle at 78% 30%, rgba(255,255,255,0.3) 0%, transparent 12%),
-        radial-gradient(circle at 60% 78%, rgba(255,255,255,0.25) 0%, transparent 10%),
-        radial-gradient(circle at 30% 70%, rgba(255,255,255,0.2)  0%, transparent 8%);
-      mix-blend-mode: screen;
-      animation: planetSparkle 5s ease-in-out infinite;
-    }
-    @keyframes planetSparkle {
-      0%, 100% { opacity: 0.5;  transform: scale(1);    }
-      50%      { opacity: 1;    transform: scale(1.06); }
-    }
-
-    /* ── Earth-like blue marble — drifts left → right across the sky ── */
-    .planet-earth {
-      top: 8%;
-      left: 0;
-      width: 130px;
-      height: 130px;
-      animation: cometEarth 95s linear infinite, planetGlow1 7s ease-in-out infinite;
-    }
-    .planet-earth .planet-body {
-      background:
-        radial-gradient(circle at 30% 26%, rgba(255,255,255,0.6)  0%, transparent 20%),
-        radial-gradient(circle at 58% 36%, rgba(160,240,255,0.35) 0%, transparent 22%),
-        radial-gradient(circle at 72% 58%, rgba(100,255,200,0.2)  0%, transparent 18%),
-        radial-gradient(circle at 40% 70%, rgba(80,180,255,0.25)  0%, transparent 20%),
-        radial-gradient(circle at 50% 50%,
-          rgba(200,240,255,0.88) 0%,
-          rgba(60,180,240,0.82)  18%,
-          rgba(30,120,200,0.75)  38%,
-          rgba(15,80,160,0.65)   56%,
-          rgba(8,40,100,0.5)     76%,
-          rgba(4,12,40,0.35)     100%);
-      box-shadow:
-        inset -30px -24px 60px rgba(4,8,28,0.6),
-        inset 14px 12px 24px rgba(160,240,255,0.28),
-        0 0 70px rgba(96,208,255,0.38),
-        0 0 140px rgba(60,180,255,0.18);
-    }
-
-    /* ── Saturn-like ringed gas giant — drifts right → left ── */
-    .planet-jupiter {
-      top: 22%;
-      right: 0;
-      width: 170px;
-      height: 170px;
-      animation: cometJupiter 130s linear infinite, planetGlow2 8s ease-in-out infinite;
-    }
-    .planet-jupiter .planet-body {
-      background:
-        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.55)  0%, transparent 18%),
-        radial-gradient(circle at 65% 40%, rgba(255,200,120,0.25) 0%, transparent 20%),
-        repeating-linear-gradient(2deg,
-          rgba(200, 100, 60, 0.36) 0 10px,
-          rgba(240, 160, 90, 0.22) 10px 20px,
-          rgba(255, 220, 140, 0.28) 20px 30px,
-          rgba(220, 120, 70, 0.18) 30px 40px),
-        radial-gradient(circle at 50% 50%,
-          rgba(255,230,180,0.9)  0%,
-          rgba(255,190,120,0.85) 18%,
-          rgba(240,140,80,0.78)  36%,
-          rgba(200,90,50,0.65)   58%,
-          rgba(120,40,16,0.5)    80%,
-          rgba(40,10,4,0.35)     100%);
-      box-shadow:
-        inset -32px -28px 72px rgba(4,4,12,0.65),
-        inset 16px 12px 24px rgba(255,220,140,0.26),
-        0 0 90px rgba(255,176,112,0.38),
-        0 0 160px rgba(255,112,184,0.2);
-    }
-    .planet-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      pointer-events: none;
-      border-radius: 50%;
-      mix-blend-mode: screen;
-    }
-    /* Single ring behind the body — the body covers the center naturally */
-    .planet-jupiter .planet-ring {
-      width: 320px;
-      height: 320px;
-      transform: translate(-50%, -50%) rotateX(68deg) rotate(-22deg);
-      background:
-        radial-gradient(ellipse at 50% 50%,
-          transparent 40%,
-          rgba(255,200,140,0.5)  43%,
-          rgba(255,180,110,0.4)  47%,
-          transparent 48%,
-          rgba(255,190,130,0.35) 51%,
-          rgba(255,160,100,0.25) 56%,
-          transparent 57%,
-          rgba(255,210,150,0.2)  61%,
-          rgba(255,200,140,0.1)  68%,
-          transparent 70%);
-      box-shadow: 0 0 28px rgba(255,200,140,0.2);
-      opacity: 0.9;
-    }
-
-    /* ── Real Saturn — icy cream with prominent ring ── */
-    .planet-saturn {
-      top: 0;
-      left: 40%;
-      width: 140px;
-      height: 140px;
-      animation: cometSaturn 110s linear infinite, planetGlow2 7.5s ease-in-out infinite;
-    }
-    .planet-saturn .planet-body {
-      background:
-        radial-gradient(circle at 30% 26%, rgba(255,255,255,0.55) 0%, transparent 18%),
-        radial-gradient(circle at 65% 42%, rgba(240,220,180,0.2) 0%, transparent 18%),
-        radial-gradient(circle at 50% 50%,
-          rgba(255,240,210,0.9)  0%,
-          rgba(240,215,170,0.84) 20%,
-          rgba(220,190,140,0.76) 40%,
-          rgba(180,150,110,0.65) 60%,
-          rgba(120,90,60,0.5)    80%,
-          rgba(50,30,15,0.35)    100%);
-      box-shadow:
-        inset -28px -22px 60px rgba(10,5,8,0.65),
-        inset 14px 10px 22px rgba(255,240,200,0.28),
-        0 0 70px rgba(255,220,160,0.32),
-        0 0 130px rgba(255,200,140,0.16);
-      animation-duration: 30s;
-    }
-    .planet-saturn .planet-ring {
-      width: 260px;
-      height: 260px;
-      transform: translate(-50%, -50%) rotateX(68deg) rotate(-18deg);
-      background:
-        radial-gradient(ellipse at 50% 50%,
-          transparent 38%,
-          rgba(220,200,160,0.45) 41%,
-          rgba(240,220,180,0.38) 46%,
-          transparent 47%,
-          rgba(200,180,140,0.3)  50%,
-          rgba(220,195,155,0.24) 56%,
-          transparent 57%,
-          rgba(240,220,180,0.18) 62%,
-          rgba(220,200,160,0.1)  68%,
-          transparent 70%);
-      box-shadow: 0 0 24px rgba(240,220,180,0.18);
-      opacity: 0.9;
-    }
-
-    /* ── Mars-like rosy planet — drifts diagonally bottom → top ── */
-    .planet-mars {
-      bottom: 0;
-      left: 0;
-      width: 96px;
-      height: 96px;
-      animation: cometMars 80s linear infinite, planetGlow1 9s ease-in-out infinite;
-    }
-    .planet-mars .planet-body {
-      background:
-        radial-gradient(circle at 33% 28%, rgba(255,255,255,0.5)  0%, transparent 20%),
-        radial-gradient(circle at 62% 50%, rgba(255,160,220,0.3)  0%, transparent 22%),
-        radial-gradient(circle at 55% 42%, rgba(0,0,0,0.18)       0%, transparent 18%),
-        radial-gradient(circle at 72% 72%, rgba(120,20,80,0.25)   0%, transparent 16%),
-        radial-gradient(circle at 50% 50%,
-          rgba(255,200,235,0.9)  0%,
-          rgba(255,140,200,0.84) 18%,
-          rgba(240,90,160,0.76)  36%,
-          rgba(180,50,110,0.65)  56%,
-          rgba(100,16,55,0.5)    78%,
-          rgba(40,4,18,0.35)     100%);
-      box-shadow:
-        inset -24px -20px 50px rgba(10,5,21,0.58),
-        inset 14px 10px 20px rgba(255,180,220,0.28),
-        0 0 64px rgba(255,112,184,0.4),
-        0 0 120px rgba(192,96,255,0.22);
-    }
-
-    /* ── Pearl ice moon — drifts diagonally top → bottom ── */
-    .planet-moon {
-      top: 0;
-      right: 0;
-      width: 68px;
-      height: 68px;
-      animation: cometMoon 65s linear infinite, planetGlow2 6.5s ease-in-out infinite;
-    }
-    .planet-moon .planet-body {
-      background:
-        radial-gradient(circle at 30% 26%, rgba(255,255,255,0.72) 0%, transparent 22%),
-        radial-gradient(circle at 58% 48%, rgba(200,180,255,0.3) 6%, transparent 18%),
-        radial-gradient(circle at 72% 68%, rgba(140,120,200,0.35) 6%, transparent 16%),
-        radial-gradient(circle at 32% 72%, rgba(180,160,240,0.28) 5%, transparent 14%),
-        radial-gradient(circle at 50% 50%,
-          rgba(250,244,255,0.9)  0%,
-          rgba(220,210,248,0.84) 22%,
-          rgba(180,170,220,0.72) 48%,
-          rgba(120,112,170,0.56) 72%,
-          rgba(60,56,100,0.38)   92%,
-          rgba(28,24,48,0.25)    100%);
-      box-shadow:
-        inset -18px -16px 36px rgba(10,5,21,0.55),
-        inset 10px 8px 16px rgba(240,230,255,0.38),
-        0 0 44px rgba(200,180,255,0.3),
-        0 0 90px rgba(192,96,255,0.16);
+    /* Surface maps are projected onto spheres; lighting stays fixed as they rotate. */
+    .planet { mix-blend-mode: normal; }
+    .planet canvas { position: absolute; width: 220%; height: 220%; left: -60%; top: -60%; }
+    .planet-earth { top: 8%; left: 0; width: 130px; height: 130px;
+      animation: cometEarth 95s linear infinite, planetGlow1 9s ease-in-out infinite;
+      animation-delay: -28s, -3s; }
+    .planet-jupiter { top: 22%; right: 0; width: 170px; height: 170px;
+      animation: cometJupiter 130s linear infinite, planetGlow2 11s ease-in-out infinite;
+      animation-delay: -32s, -5s; }
+    .planet-saturn { top: 0; left: 40%; width: 140px; height: 140px;
+      animation: cometSaturn 110s linear infinite, planetGlow2 10s ease-in-out infinite;
+      animation-delay: -43s, -2s; }
+    .planet-mars { bottom: 0; left: 0; width: 96px; height: 96px;
+      animation: cometMars 80s linear infinite, planetGlow2 12s ease-in-out infinite;
+      animation-delay: -38s, -4s; }
+    .planet-moon { top: 0; right: 0; width: 68px; height: 68px;
+      animation: cometMoon 65s linear infinite, planetGlow1 11s ease-in-out infinite;
+      animation-delay: -15s, -6s; }
+    @media (prefers-reduced-motion: reduce) {
+      .planet { animation-play-state: paused; }
     }
 
     /* ── Comet-like traversal paths: planets drift across the night sky ──
@@ -517,7 +316,7 @@
       .con-heart { width: 120px; }
       .planet-earth   { width: 90px;  height: 90px;  }
       .planet-jupiter { width: 120px; height: 120px; }
-      .planet-jupiter .planet-ring { width: 200px; }
+      .planet-saturn { width: 110px; height: 110px; }
       .planet-mars    { width: 64px;  height: 64px;  }
       .planet-moon    { width: 48px;  height: 48px;  }
     }
@@ -1880,6 +1679,10 @@
       }
       .mp-title { font-size: 18px; }
     }
+    .rose-card.rose-empty { display: none; }
+    .rg-edit .rose-card.rose-empty { display: block; }
+    .rg-local-note { display: none; text-align: center; font-size: 14px; margin: 0 0 24px; color: var(--platinum); }
+    .rg-edit .rg-local-note { display: block; }
   </style>
 </head>
 <body>
@@ -1969,17 +1772,11 @@
     <div class="shooting-star ss-3"></div>
 
     <!-- ═══ Floating 3D celestial bodies (pure CSS spheres) ═══ -->
-    <div class="planet planet-earth"><div class="planet-body"></div></div>
-    <div class="planet planet-jupiter">
-      <div class="planet-ring"></div>
-      <div class="planet-body"></div>
-    </div>
-    <div class="planet planet-saturn">
-      <div class="planet-ring"></div>
-      <div class="planet-body"></div>
-    </div>
-    <div class="planet planet-mars"><div class="planet-body"></div></div>
-    <div class="planet planet-moon"><div class="planet-body"></div></div>
+    <div class="planet planet-earth" aria-hidden="true"><canvas data-planet="earth"></canvas></div>
+    <div class="planet planet-jupiter" aria-hidden="true"><canvas data-planet="jupiter"></canvas></div>
+    <div class="planet planet-saturn" aria-hidden="true"><canvas data-planet="saturn"></canvas></div>
+    <div class="planet planet-mars" aria-hidden="true"><canvas data-planet="mars"></canvas></div>
+    <div class="planet planet-moon" aria-hidden="true"><canvas data-planet="moon"></canvas></div>
   </div>
 
   <div class="page-wrapper">
@@ -2250,6 +2047,7 @@
         <h2 class="rg-title">宇宙玫瑰园</h2>
         <p class="rg-subtitle">Cosmic Rose Garden — Each petal holds a universe</p>
       </div>
+      <p class="rg-local-note">管理模式中的上传与描述仅保存在当前浏览器。</p>
       <!-- admin button moved to footer -->
       <div class="rg-grid" id="rgGrid"></div>
     </section>
@@ -2432,7 +2230,7 @@
     requestAnimationFrame(drawParticles);
 
     /* ═══ COSMIC ROSE GARDEN — Admin CMS ═══ */
-    (() => {
+    (async () => {
       const TOTAL = 9, KEY = 'cosmicRoseGarden';
       const HASH = '50f7b8ff792902d98675ec2479e85f07634b7260bc8f3bce723348b43c62c1a9';
       const SALT = 'NovaCrystalLabs_CosmicRose_2025';
@@ -2444,7 +2242,39 @@
       }
 
       let data = (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (_) { return {}; } })();
-      const save = () => localStorage.setItem(KEY, JSON.stringify(data));
+      // Published images work on every device; local edits remain private to this browser.
+      const publishedRoses = ['IMG_0645.jpeg', 'IMG_9868.jpeg', 'IMG_9873.jpeg',
+        'IMG_9874.jpeg', 'IMG_9878.jpeg', 'IMG_9880.jpeg'];
+      if (!data || typeof data !== 'object' || Array.isArray(data)) data = {};
+      let db;
+      try {
+        db = await new Promise((resolve, reject) => {
+          const request = indexedDB.open('NovaCosmicRoseGarden', 1);
+          request.onupgradeneeded = () => request.result.createObjectStore('garden');
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+          request.onblocked = () => reject(new Error('Storage is busy'));
+        });
+        const stored = await new Promise((resolve, reject) => {
+          const request = db.transaction('garden').objectStore('garden').get(KEY);
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+        if (stored && typeof stored === 'object' && !Array.isArray(stored)) data = { ...data, ...stored };
+      } catch (_) { /* Preserve legacy localStorage data if IndexedDB is unavailable. */ }
+      async function save() {
+        if (!db) { localStorage.setItem(KEY, JSON.stringify(data)); return; }
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction('garden', 'readwrite');
+          tx.objectStore('garden').put(data, KEY);
+          tx.oncomplete = resolve;
+          tx.onerror = () => reject(tx.error);
+          tx.onabort = () => reject(tx.error);
+        });
+      }
+      function saveError() { alert('图片或描述未能保存。请检查浏览器存储空间后重试；已发布的玫瑰图仍可浏览。'); }
+      // Copy old edits into the larger store, without deleting the legacy copy.
+      if (db && Object.keys(data).length) save().catch(saveError);
       let editMode = false;
 
       const grid = document.getElementById('rgGrid');
@@ -2454,7 +2284,7 @@
         card.className = 'rose-card';
         card.innerHTML =
           '<div class="rose-img-wrap">' +
-            '<img id="img_' + id + '" src="" alt="Crystal Rose ' + (i+1) + '" style="opacity:0" />' +
+            '<img loading="lazy" decoding="async" id="img_' + id + '" alt="Crystal Rose ' + (i+1) + '" style="opacity:0" />' +
             '<div class="rose-placeholder" id="ph_' + id + '">' +
               '<div class="rose-placeholder-icon">🌹</div>' +
               '<div class="rose-placeholder-text">Rose ' + (i+1) + '<br/>Awaiting</div>' +
@@ -2482,7 +2312,7 @@
           const reader = new FileReader();
           reader.onload = (e) => {
             const tmp = new Image();
-            tmp.onload = () => {
+            tmp.onload = async () => {
               let w = tmp.width, h = tmp.height;
               if (w > 800) { h = h * 800 / w; w = 800; }
               if (h > 1100) { w = w * 1100 / h; h = 1100; }
@@ -2490,17 +2320,20 @@
               c.getContext('2d').drawImage(tmp, 0, 0, w, h);
               if (!data[id]) data[id] = {};
               data[id].img = c.toDataURL('image/jpeg', 0.78);
-              save(); hydrate(id);
+              hydrate(id);
+              try { await save(); } catch (_) { saveError(); }
             };
+            tmp.onerror = () => alert('浏览器无法解码这张图片，请使用 JPEG、PNG 或 WebP。');
             tmp.src = e.target.result;
           };
+          reader.onerror = () => alert('无法读取这张图片，请重新选择。');
           reader.readAsDataURL(file);
           this.value = '';
         });
         document.getElementById('edit_' + id).addEventListener('input', function() {
           if (!data[id]) data[id] = {};
           data[id].desc = this.value;
-          save();
+          save().catch(saveError);
         });
         hydrate(id);
       }
@@ -2511,8 +2344,19 @@
         const ph = document.getElementById('ph_' + id);
         const txt = document.getElementById('txt_' + id);
         const ea = document.getElementById('edit_' + id);
-        if (d && d.img) { img.src = d.img; img.style.opacity = '1'; ph.style.display = 'none'; }
-        else { img.src = ''; img.style.opacity = '0'; ph.style.display = 'flex'; }
+        const fallback = publishedRoses[Number(id.slice(5))];
+        const imageSource = (d && typeof d.img === 'string' && d.img) || fallback;
+        img.closest('.rose-card').classList.toggle('rose-empty', !imageSource);
+        img.onload = () => { img.style.opacity = '1'; ph.style.display = 'none'; };
+        img.onerror = () => {
+          if (fallback && img.getAttribute('src') !== fallback) { img.src = fallback; return; }
+          img.style.opacity = '0'; ph.style.display = 'flex';
+          ph.querySelector('.rose-placeholder-text').textContent = '图片暂时无法加载，请刷新重试';
+        };
+        if (imageSource) {
+          if (img.getAttribute('src') !== imageSource) img.src = imageSource;
+          if (img.complete && img.naturalWidth) img.onload();
+        } else { img.removeAttribute('src'); img.style.opacity = '0'; ph.style.display = 'flex'; }
         const desc = (d && d.desc) || '';
         txt.textContent = desc; ea.value = desc;
       }
@@ -2566,7 +2410,7 @@
       </div>
       <div class="mp-time" id="mpTime">0:00</div>
     </div>
-    <audio id="mpAudio" preload="auto" autoplay crossorigin="anonymous"></audio>
+    <audio id="mpAudio" preload="auto" playsinline></audio>
   </div>
 
   <script>
@@ -2592,7 +2436,12 @@
       ];
       let current = 0;
 
-      let audioCtx, analyser, sourceNode, freqData;
+      // Keep audio on the native media path: a suspended Web Audio graph can silence it.
+      if ('audioSession' in navigator) {
+        try { navigator.audioSession.type = 'playback'; } catch (_) {}
+      }
+      let playAttempt = 0;
+      const labelEl = document.getElementById('mpLabel');
       let width = 0, height = 0;
 
       /* ── Canvas sizing (DPR aware) ── */
@@ -2629,29 +2478,42 @@
         }
       }
 
-      /* ── Build audio graph on first play (requires user gesture) ── */
-      function initAudioGraph() {
-        if (audioCtx) return;
-        const Ctx = window.AudioContext || window.webkitAudioContext;
-        if (!Ctx) return;
-        audioCtx   = new Ctx();
-        sourceNode = audioCtx.createMediaElementSource(audio);
-        analyser   = audioCtx.createAnalyser();
-        analyser.fftSize = 256;
-        analyser.smoothingTimeConstant = 0.82;
-        freqData = new Uint8Array(analyser.frequencyBinCount);
-        sourceNode.connect(analyser);
-        analyser.connect(audioCtx.destination);
+      async function tryPlay() {
+        const attempt = ++playAttempt;
+        try {
+          await audio.play();
+          if (attempt === playAttempt) labelEl.textContent = 'Now Playing';
+        } catch (err) {
+          if (attempt !== playAttempt || err.name === 'AbortError') return;
+          labelEl.textContent = err.name === 'NotAllowedError' ? '点击播放' : '播放失败，点击重试';
+        }
       }
 
-      async function tryPlay() {
+      function updatePosition() {
+        if (!navigator.mediaSession?.setPositionState) return;
+        if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
         try {
-          initAudioGraph();
-          if (audioCtx && audioCtx.state === 'suspended') await audioCtx.resume();
-          await audio.play();
-          player.classList.add('is-playing');
-        } catch (err) {
-          player.classList.remove('is-playing');
+          navigator.mediaSession.setPositionState({ duration: audio.duration,
+            playbackRate: audio.playbackRate,
+            position: Math.max(0, Math.min(audio.currentTime, audio.duration)) });
+        } catch (_) {}
+      }
+      function seekTo(time) {
+        if (Number.isFinite(audio.duration)) audio.currentTime = Math.max(0, Math.min(time, audio.duration));
+        updatePosition();
+      }
+      if ('mediaSession' in navigator) {
+        const actions = {
+          play: () => tryPlay(), pause: () => audio.pause(),
+          previoustrack: () => loadTrack(current - 1, true),
+          nexttrack: () => loadTrack(current + 1, true),
+          seekbackward: (e) => seekTo(audio.currentTime - (e.seekOffset || 10)),
+          seekforward: (e) => seekTo(audio.currentTime + (e.seekOffset || 10)),
+          seekto: (e) => seekTo(e.seekTime),
+          stop: () => { audio.pause(); seekTo(0); }
+        };
+        for (const [action, handler] of Object.entries(actions)) {
+          try { navigator.mediaSession.setActionHandler(action, handler); } catch (_) {}
         }
       }
 
@@ -2659,7 +2521,14 @@
       function loadTrack(index, shouldPlay) {
         current = ((index % playlist.length) + playlist.length) % playlist.length;
         const track = playlist[current];
-        audio.src = track.src;
+        ++playAttempt;
+        audio.src = new URL(track.src, document.baseURI).href;
+        if ('mediaSession' in navigator) {
+          if ('MediaMetadata' in window) navigator.mediaSession.metadata = new MediaMetadata({
+            title: track.title, artist: 'Nova', album: 'Of Course I Still Love You'
+          });
+          try { navigator.mediaSession.setPositionState?.(); } catch (_) {}
+        }
         titleEl.textContent = track.title;
         subEl.textContent   = track.subtitle;
         trackNoEl.textContent = (current + 1) + '/' + playlist.length;
@@ -2703,8 +2572,20 @@
         // After the size shrinks, no clamp needed (it gets smaller, can't overflow)
       });
 
-      audio.addEventListener('play',  () => player.classList.add('is-playing'));
-      audio.addEventListener('pause', () => player.classList.remove('is-playing'));
+      audio.addEventListener('play', () => {
+        player.classList.add('is-playing'); toggle.setAttribute('aria-label', '暂停');
+        labelEl.textContent = 'Now Playing';
+        if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+      });
+      audio.addEventListener('pause', () => {
+        player.classList.remove('is-playing'); toggle.setAttribute('aria-label', '播放');
+        if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      });
+      audio.addEventListener('error', () => {
+        player.classList.remove('is-playing'); labelEl.textContent = '播放失败，点击重试';
+        if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      });
+      ['loadedmetadata', 'durationchange', 'seeked', 'ratechange'].forEach(event => audio.addEventListener(event, updatePosition));
       audio.addEventListener('ended', () => loadTrack(current + 1, true));
 
       /* ── Drag the player around (works in expanded and orb mode) ── */
@@ -2764,6 +2645,7 @@
         const m = Math.floor(t / 60);
         const s = Math.floor(t % 60).toString().padStart(2, '0');
         timeEl.textContent = `${m}:${s}`;
+        updatePosition();
       });
 
       /* ── Autoplay attempt + first-interaction fallback ── */
@@ -2772,22 +2654,24 @@
       else window.addEventListener('load', showPlayer);
 
       loadTrack(0, false);
-      tryPlay();
-      const gestureEvents = ['pointerdown', 'keydown', 'touchstart'];
-      const onFirstGesture = () => {
-        if (audio.paused) tryPlay();
+      // One first gesture only; controls handle their own click, so pause stays paused.
+      let firstGesture = true;
+      const onFirstGesture = (event) => {
+        if (!firstGesture) return;
+        firstGesture = false;
+        document.removeEventListener('pointerdown', onFirstGesture);
+        document.removeEventListener('keydown', onFirstGesture);
+        if (!event.target.closest('button, input, textarea, a') && audio.paused) tryPlay();
       };
-      gestureEvents.forEach(ev => document.addEventListener(ev, onFirstGesture, { once: true, passive: true }));
+      document.addEventListener('pointerdown', onFirstGesture, { passive: true });
+      document.addEventListener('keydown', onFirstGesture);
 
       /* ── Render loop: spectrum bars + particles ── */
       const idleData = new Uint8Array(128);
       function getData() {
-        if (analyser && !audio.paused) {
-          analyser.getByteFrequencyData(freqData);
-          return freqData;
-        }
+        // Ambient animation, deliberately independent of the audio output.
         // graceful idle sine wave when paused / before gesture
-        const now = performance.now() * 0.0022;
+        const now = audio.paused ? performance.now() * 0.001 : audio.currentTime * 2.2;
         for (let i = 0; i < idleData.length; i++) {
           idleData[i] = Math.max(0, Math.sin(now + i * 0.28) * 22 + 28 + Math.sin(now * 0.6 + i * 0.11) * 10);
         }
@@ -2867,5 +2751,6 @@
       window.addEventListener('load', () => { resize(); initParticles(); });
     })();
   </script>
+  <script src="assets/planets.js" defer></script>
 </body>
 </html>
